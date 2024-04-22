@@ -1,0 +1,6 @@
+name: CV2_pose
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
