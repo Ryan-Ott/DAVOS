@@ -81,7 +81,7 @@ if __name__ == '__main__':
     parser.add_argument('--root', type=str, help='a path to output directory')
     parser.add_argument('--dataset', type=str, default='deepfashion', help='a path to output directory')
     parser.add_argument('--out', type=str, help='a path to output directory')
-    parser.add_argument('--sizes', type=int, nargs='+', default=((256, 256),) )
+    parser.add_argument('--sizes', type=int, nargs='+', default=((256, 256),))
     parser.add_argument('--n_worker', type=int, help='number of worker processes', default=8)
     parser.add_argument('--chunksize', type=int, help='approximate chunksize for each worker', default=10)
     args = parser.parse_args()

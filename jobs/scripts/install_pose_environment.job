@@ -5,8 +5,8 @@
 #SBATCH --job-name=pidm_environment_setup
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=3
-#SBATCH --time=05:00:00
-#SBATCH --mem=32000M
+#SBATCH --time=03:00:00
+#SBATCH --mem=59000M
 #SBATCH --output=jobs/outputs/pidm_env_setup_%A.out
 #SBATCH --error=jobs/outputs/pidm_env_setup_%A_error.out
 
@@ -17,4 +17,4 @@ module load Anaconda3/2022.05
 # create the conda environment
 conda env create -f modules/PIDM/pose_environment.yml
 
-echo "Conda environment created successfully!"
+echo "Finished!"

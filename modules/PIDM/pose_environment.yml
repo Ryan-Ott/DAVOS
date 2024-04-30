@@ -4,3 +4,21 @@ channels:
   - nvidia
   - conda-forge
   - defaults
+dependencies:
+  - python=3.9
+  - pip
+  - pillow=8.3.2
+  - pyyaml=5.4.1
+  - scikit-image=0.17.2
+  - tensorboard=2.6.0
+  - tqdm=4.62.3
+  - pydantic=1.10.14
+  - wandb
+  - pip:
+    - tensorfn
+    - torch
+    - torchvision
+    - opencv-python=4.5.4.58
+    - imageio=2.10.3
+    - lmdb=1.2.1
+    - scipy=1.5.4

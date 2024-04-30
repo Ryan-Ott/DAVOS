@@ -293,7 +293,7 @@ def main(settings, EXP_NAME):
 
 if __name__ == "__main__":
 
-    init_distributed()
+    # init_distributed()  #* Removed for single gpu running
 
     import argparse
 
@@ -319,9 +319,10 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     print ('Experiment: '+ args.exp_name)
-
-    DiffConf = DiffConfig(DiffusionConfig,  args.DiffConfigPath, args.opts, False)
-    DataConf = DataConfig(args.DataConfigPath)
+    print(f'Diffusion Config Path: {args.DiffConfigPath}')
+    print(f'Current path: {os.getcwd()}')
+    DiffConf = DiffConfig(DiffusionConfig,  args.DiffConfigPath, args.opts, False)  #? What does this do
+    DataConf = DataConfig(args.DataConfigPath)  #? What does this do?
 
     DiffConf.training.ckpt_path = os.path.join(args.save_path, args.exp_name)
     DataConf.data.path = args.dataset_path
