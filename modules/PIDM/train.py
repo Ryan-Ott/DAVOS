@@ -238,23 +238,28 @@ def main(settings, EXP_NAME):
 
     if is_main_process(): wandb.init(project="person-synthesis", name = EXP_NAME,  settings = wandb.Settings(code_dir="."))
 
-    if DiffConf.ckpt is not None: 
+    if DiffConf.ckpt is not None:  #? If training from checkpoint skip warmup
         DiffConf.training.scheduler.warmup = 0
 
-    DiffConf.distributed = True
-    local_rank = int(os.environ['LOCAL_RANK'])
-    
+    DiffConf.distributed = False  #* This needs to be False for single GPU, was originally True
+    local_rank = int(os.environ['LOCAL_RANK'])  #? Might also need to be changed for single GPU?
+
+    #? args.batch_size probably denotes how many actual imgs are in a batch. During training we do both noising & denoising, so both directions are needed -> //2
     DataConf.data.train.batch_size = args.batch_size//2  #src -> tgt , tgt -> src
-    
-    val_dataset, train_dataset = deepfashion_data.get_train_val_dataloader(DataConf.data, labels_required = True, distributed = True)
-    
-    def cycle(iterable):
+
+    #* distributed changed from True to False for single GPU running
+    #* Might also need to create a new modules/PIDM/config/data.yaml and change the type, path & batch_size there
+    #? deepfashion_data class name is confusing because its just data, it's supposedly fine with handling non-fashion data so maybe rename this
+    val_dataset, train_dataset = deepfashion_data.get_train_val_dataloader(DataConf.data, labels_required = True, distributed = False)
+
+    def cycle(iterable):  #? Cycle through the dataset indefinitely
         while True:
             for x in iterable:
                 yield x
 
-    val_dataset = iter(cycle(val_dataset))
+    val_dataset = iter(cycle(val_dataset))  #? Iterator for the validation set
 
+    #? Creates BeatGANsAutoencModels
     model = get_model_conf().make_model()
     model = model.to(args.device)
     ema = get_model_conf().make_model()
@@ -321,13 +326,15 @@ if __name__ == "__main__":
     print ('Experiment: '+ args.exp_name)
     print(f'Diffusion Config Path: {args.DiffConfigPath}')
     print(f'Current path: {os.getcwd()}')
-    DiffConf = DiffConfig(DiffusionConfig,  args.DiffConfigPath, args.opts, False)  #? What does this do
-    DataConf = DataConfig(args.DataConfigPath)  #? What does this do?
+
+    #? Configuration objects storing things like paths, schedules, flags, hyperparameters etc...
+    DiffConf = DiffConfig(DiffusionConfig,  args.DiffConfigPath, args.opts, False)
+    DataConf = DataConfig(args.DataConfigPath)  # Gets set up using a yaml file
 
     DiffConf.training.ckpt_path = os.path.join(args.save_path, args.exp_name)
     DataConf.data.path = args.dataset_path
 
-    if is_main_process():
+    if is_main_process():  #? Always returns True on single GPU
 
         if not os.path.isdir(args.save_path): os.mkdir(args.save_path)
         if not os.path.isdir(DiffConf.training.ckpt_path): os.mkdir(DiffConf.training.ckpt_path)
