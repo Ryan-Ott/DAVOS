@@ -1,1 +1,8 @@
-img/id_00000265/01_1_front.jpg,img/id_00000265/01_2_side.jpg,img/id_00000265/01_7_additional.jpg
+img/MEN/Denim/id_00000265/01_1_front.jpg,img/MEN/Denim/id_00000265/01_2_side.jpg,img/MEN/Denim/id_00000265/01_7_additional.jpg
+img/MEN/Denim/id_00000265/01_2_side.jpg,img/MEN/Denim/id_00000265/01_1_front.jpg,img/MEN/Denim/id_00000265/01_7_additional.jpg
+img/MEN/Denim/id_00000265/01_7_additional.jpg,img/MEN/Denim/id_00000265/01_1_front.jpg,img/MEN/Denim/id_00000265/01_2_side.jpg
+img/MEN/Jackets_Vests/id_00000084/04_1_front.jpg,img/MEN/Jackets_Vests/id_00000084/04_4_full.jpg,img/MEN/Jackets_Vests/id_00000084/04_7_additional.jpg
+img/MEN/Jackets_Vests/id_00000084/04_4_full.jpg,img/MEN/Jackets_Vests/id_00000084/04_1_front.jpg,img/MEN/Jackets_Vests/id_00000084/04_7_additional.jpg
+img/MEN/Jackets_Vests/id_00000084/04_7_additional.jpg,img/MEN/Jackets_Vests/id_00000084/04_1_front.jpg,img/MEN/Jackets_Vests/id_00000084/04_4_full.jpg
+img/MEN/Jackets_Vests/id_00000084/05_1_front.jpg,img/MEN/Jackets_Vests/id_00000084/05_2_side.jpg,img/MEN/Jackets_Vests/id_00000084/05_3_back.jpg,img/MEN/Jackets_Vests/id_00000084/05_7_additional.jpg
+img/MEN/Jackets_Vests/id_00000084/05_2_side.jpg,img/MEN/Jackets_Vests/id_00000084/05_1_front.jpg,img/MEN/Jackets_Vests/id_00000084/05_3_back.jpg,img/MEN/Jackets_Vests/id_00000084/05_7_additional.jpg
