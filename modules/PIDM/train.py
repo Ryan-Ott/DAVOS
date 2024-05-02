@@ -242,7 +242,7 @@ def main(settings, EXP_NAME):
         DiffConf.training.scheduler.warmup = 0
 
     DiffConf.distributed = False  #* This needs to be False for single GPU, was originally True
-    local_rank = int(os.environ['LOCAL_RANK'])  #? Might also need to be changed for single GPU?
+    local_rank = 0 #* Changed from int(os.environ['LOCAL_RANK']) to 0 for single GPU
 
     #? args.batch_size probably denotes how many actual imgs are in a batch. During training we do both noising & denoising, so both directions are needed -> //2
     DataConf.data.train.batch_size = args.batch_size//2  #src -> tgt , tgt -> src
