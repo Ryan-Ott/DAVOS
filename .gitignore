@@ -162,8 +162,5 @@ cython_debug/
 # wandb
 **/wandb/
 
-# Script logs/outputs
-jobs/outputs
-
 # MacOS stuff
 **/.DS_Store

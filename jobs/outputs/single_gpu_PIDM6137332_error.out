@@ -1,0 +1,37 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+wandb: Currently logged in as: ryanott. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.16.6
+wandb: Run data is saved locally in /gpfs/home2/scur2194/CV2/DAVOS/modules/PIDM/wandb/run-20240503_002004-4mzspl6j
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run single_gpu_pidm
+wandb: ⭐️ View project at https://wandb.ai/ryanott/person-synthesis
+wandb: 🚀 View run at https://wandb.ai/ryanott/person-synthesis/runs/4mzspl6j
+  0%|          | 0/2 [00:00<?, ?it/s]  0%|          | 0/2 [00:03<?, ?it/s]
+wandb: - 0.009 MB of 0.009 MB uploadedwandb: \ 0.009 MB of 0.015 MB uploadedwandb: | 0.015 MB of 0.015 MB uploadedwandb: 🚀 View run single_gpu_pidm at: https://wandb.ai/ryanott/person-synthesis/runs/4mzspl6j
+wandb: ⭐️ View project at: https://wandb.ai/ryanott/person-synthesis
+wandb: Synced 6 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20240503_002004-4mzspl6j/logs
+Traceback (most recent call last):
+  File "train.py", line 344, in <module>
+    main(settings = [args, DiffConf, DataConf], EXP_NAME = args.exp_name)
+  File "train.py", line 296, in main
+    DiffConf, train_dataset, val_dataset, model, ema, diffusion, betas, optimizer, scheduler, args.guidance_prob, args.cond_scale, args.device, wandb
+  File "train.py", line 144, in train
+    ema, model.module, 0 if i < conf.training.scheduler.warmup else 0.9999
+  File "/home/scur2194/.conda/envs/PIDM/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1270, in __getattr__
+    type(self).__name__, name))
+AttributeError: 'BeatGANsAutoencModel' object has no attribute 'module'
