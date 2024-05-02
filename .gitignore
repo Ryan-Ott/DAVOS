@@ -159,6 +159,8 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-# Irrelevant job outputs
-jobs/outputs/pidm_env_setup_6014781_error.out
-jobs/outputs/pidm_env_setup_6014781.out
+# wandb
+**/wandb/
+
+# Script logs/outputs
+jobs/outputs
