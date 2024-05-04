@@ -1,0 +1,24 @@
+logging improved.
+No module 'xformers'. Proceeding without it.
+ControlLDM: Running in eps-prediction mode
+DiffusionWrapper has 859.52 M params.
+making attention of type 'vanilla' with 512 in_channels
+Working with z of shape (1, 4, 32, 32) = 4096 dimensions.
+making attention of type 'vanilla' with 512 in_channels
+Loaded model config from [./models/cldm_v15.yaml]
+Loaded state_dict from [./models/control_sd15_ini.ckpt]
+Training: 0it [00:00, ?it/s]Training:   0%|          | 0/12500 [00:00<?, ?it/s]Epoch 0:   0%|          | 0/12500 [00:00<?, ?it/s] 
+JOB STATISTICS
+==============
+Job ID: 6135111
+Cluster: snellius
+User/Group: scur2199/scur2199
+State: RUNNING
+Nodes: 1
+Cores per node: 9
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 00:07:03 core-walltime
+Job Wall-clock time: 00:00:47
+Memory Utilized: 0.00 MB (estimated maximum)
+Memory Efficiency: 0.00% of 57.62 GB (57.62 GB/node)
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.

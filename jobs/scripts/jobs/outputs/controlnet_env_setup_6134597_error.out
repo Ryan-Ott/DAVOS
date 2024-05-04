@@ -1,0 +1,19 @@
+Lmod has detected the following error: The following module(s) are unknown:
+"2022s"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore_cache load "2022s"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+
+
+Lmod has detected the following error: These module(s) or extension(s) exist
+but cannot be loaded as requested: "Anaconda3/2022.05"
+   Try: "module spider Anaconda3/2022.05" to see how to load the module(s).
+
+
+
+/var/spool/slurm/slurmd/job6134597/slurm_script: line 18: conda: command not found

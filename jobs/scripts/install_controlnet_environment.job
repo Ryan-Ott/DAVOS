@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#SBATCH --partition=gpu_mig
+#SBATCH --gres=gpu:1
+#SBATCH --job-name=controlnet_environment_setup
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=3
+#SBATCH --time=02:00:00
+#SBATCH --mem=59000M
+#SBATCH --output=/home/scur2199/DAVOS/jobs/scripts/jobs/outputs/controlnet_env_setup_%A.out
+#SBATCH --error=/home/scur2199/DAVOS/jobs/scripts/jobs/outputs/controlnet_env_setup_%A_error.out
+
+module purge
+module load 2022
+module load Anaconda3/2022.05
+
+# create the conda environment
+conda env create -f /home/scur2199/DAVOS/jobs/scripts/modules/ControlNet/environment.yaml
+
+echo "Finished!"

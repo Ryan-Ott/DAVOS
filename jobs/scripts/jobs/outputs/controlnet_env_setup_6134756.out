@@ -1,0 +1,14 @@
+
+JOB STATISTICS
+==============
+Job ID: 6134756
+Cluster: snellius
+User/Group: scur2199/scur2199
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 9
+CPU Utilized: 00:00:01
+CPU Efficiency: 0.36% of 00:04:39 core-walltime
+Job Wall-clock time: 00:00:31
+Memory Utilized: 1.19 MB
+Memory Efficiency: 0.00% of 57.62 GB

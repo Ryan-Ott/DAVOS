@@ -1,0 +1,66 @@
+logging improved.
+No module 'xformers'. Proceeding without it.
+ControlLDM: Running in eps-prediction mode
+DiffusionWrapper has 859.52 M params.
+making attention of type 'vanilla' with 512 in_channels
+Working with z of shape (1, 4, 32, 32) = 4096 dimensions.
+making attention of type 'vanilla' with 512 in_channels
+Loaded model config from [./models/cldm_v15.yaml]
+These weights are newly added: logvar
+These weights are newly added: control_model.zero_convs.0.0.weight
+These weights are newly added: control_model.zero_convs.0.0.bias
+These weights are newly added: control_model.zero_convs.1.0.weight
+These weights are newly added: control_model.zero_convs.1.0.bias
+These weights are newly added: control_model.zero_convs.2.0.weight
+These weights are newly added: control_model.zero_convs.2.0.bias
+These weights are newly added: control_model.zero_convs.3.0.weight
+These weights are newly added: control_model.zero_convs.3.0.bias
+These weights are newly added: control_model.zero_convs.4.0.weight
+These weights are newly added: control_model.zero_convs.4.0.bias
+These weights are newly added: control_model.zero_convs.5.0.weight
+These weights are newly added: control_model.zero_convs.5.0.bias
+These weights are newly added: control_model.zero_convs.6.0.weight
+These weights are newly added: control_model.zero_convs.6.0.bias
+These weights are newly added: control_model.zero_convs.7.0.weight
+These weights are newly added: control_model.zero_convs.7.0.bias
+These weights are newly added: control_model.zero_convs.8.0.weight
+These weights are newly added: control_model.zero_convs.8.0.bias
+These weights are newly added: control_model.zero_convs.9.0.weight
+These weights are newly added: control_model.zero_convs.9.0.bias
+These weights are newly added: control_model.zero_convs.10.0.weight
+These weights are newly added: control_model.zero_convs.10.0.bias
+These weights are newly added: control_model.zero_convs.11.0.weight
+These weights are newly added: control_model.zero_convs.11.0.bias
+These weights are newly added: control_model.input_hint_block.0.weight
+These weights are newly added: control_model.input_hint_block.0.bias
+These weights are newly added: control_model.input_hint_block.2.weight
+These weights are newly added: control_model.input_hint_block.2.bias
+These weights are newly added: control_model.input_hint_block.4.weight
+These weights are newly added: control_model.input_hint_block.4.bias
+These weights are newly added: control_model.input_hint_block.6.weight
+These weights are newly added: control_model.input_hint_block.6.bias
+These weights are newly added: control_model.input_hint_block.8.weight
+These weights are newly added: control_model.input_hint_block.8.bias
+These weights are newly added: control_model.input_hint_block.10.weight
+These weights are newly added: control_model.input_hint_block.10.bias
+These weights are newly added: control_model.input_hint_block.12.weight
+These weights are newly added: control_model.input_hint_block.12.bias
+These weights are newly added: control_model.input_hint_block.14.weight
+These weights are newly added: control_model.input_hint_block.14.bias
+These weights are newly added: control_model.middle_block_out.0.weight
+These weights are newly added: control_model.middle_block_out.0.bias
+Done.
+
+JOB STATISTICS
+==============
+Job ID: 6134790
+Cluster: snellius
+User/Group: scur2199/scur2199
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 9
+CPU Utilized: 00:00:52
+CPU Efficiency: 8.50% of 00:10:12 core-walltime
+Job Wall-clock time: 00:01:08
+Memory Utilized: 3.86 GB
+Memory Efficiency: 6.70% of 57.62 GB
