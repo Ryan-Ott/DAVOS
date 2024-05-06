@@ -79,6 +79,21 @@ def sample_data(loader):
 
 
 def accumulate(model1, model2, decay=0.9999):
+    """
+    Accumulates the parameters of two models using exponential moving average.
+
+    This function is used in the context of a diffusion model to accumulate the parameters
+    of two models, `model1` and `model2`, using exponential moving average. The accumulated
+    parameters are stored in `model1`.
+
+    Parameters:
+        model1 (torch.nn.Module): The first model whose parameters will be accumulated.
+        model2 (torch.nn.Module): The second model whose parameters will be used for accumulation.
+        decay (float, optional): The decay factor for the exponential moving average. Default is 0.9999.
+
+    Returns:
+        None
+    """
     par1 = dict(model1.named_parameters())
     par2 = dict(model2.named_parameters())
 
@@ -108,14 +123,14 @@ def train(conf, loader, val_loader, model, ema, diffusion, betas, optimizer, sch
 
             i = i + 1
 
-            img = torch.cat([batch['source_image'], batch['target_image']], 0)
-            target_img = torch.cat([batch['target_image'], batch['source_image']], 0)
+            img = torch.cat([batch['source_image'], batch['target_image']], 0)  #? Not sure yet why these get concatenated
+            target_img = torch.cat([batch['target_image'], batch['source_image']], 0)  #? Same here
             target_pose = torch.cat([batch['target_skeleton'], batch['source_skeleton']], 0)
 
             img = img.to(device)
             target_img = target_img.to(device)
             target_pose = target_pose.to(device)
-            time_t = torch.randint(
+            time_t = torch.randint(  #? Randomly sample a time step from the diffusion schedule for each image in the batch. Shape: [batch_size]
                 0,
                 conf.diffusion.beta_schedule["n_timestep"],
                 (img.shape[0],),
@@ -139,9 +154,14 @@ def train(conf, loader, val_loader, model, ema, diffusion, betas, optimizer, sch
             loss_list.append(loss.detach().item())
             loss_mean_list.append(loss_mse.detach().item())
             loss_vb_list.append(loss_vb.detach().item())
-
+            
+            if conf.distributed:  #* Added this if else for single-GPU setup, there is no model.module if we're not using torch.distributed
+                model_module = model.module
+            else:
+                model_module = model
+                
             accumulate(
-                ema, model.module, 0 if i < conf.training.scheduler.warmup else 0.9999
+                ema, model_module, 0 if i < conf.training.scheduler.warmup else 0.9999
             )
 
 
@@ -218,17 +238,21 @@ def train(conf, loader, val_loader, model, ema, diffusion, betas, optimizer, sch
                     seq = range(0, 1000, 1000//nsteps)
                     xs, x0_preds = ddim_steps(noise, seq, ema, betas.cuda(), [val_img, val_pose])
                     samples = xs[-1].cuda()
-
-
-            grid = torch.cat([val_img, val_pose[:,:3], samples], -1)
             
-            gathered_samples = [torch.zeros_like(grid) for _ in range(dist.get_world_size())]
-            dist.all_gather(gathered_samples, grid) 
+            grid = torch.cat([val_img, val_pose[:,:3], samples], -1)  #? What does this exactly do?
+            #? Grid shape: torch.Size([8, 3, 256, 768]) == [batch_size, 3, img_size, 3*img_size]
             
+            if conf.distributed:
+                #? Gather samples from all processes in multi-GPU set up
+                gathered_samples = [torch.zeros_like(grid) for _ in range(dist.get_world_size())]
+                dist.all_gather(gathered_samples, grid)                
 
-            if is_main_process():
-                
-                wandb.log({'samples':wandb.Image(torch.cat(gathered_samples, -2))})
+                if is_main_process():
+                    
+                    wandb.log({'samples':wandb.Image(torch.cat(gathered_samples, -2))})
+            else:  #* Added this if else for single-GPU setup, no need to gather samples from different processes
+                wandb.log({'samples':wandb.Image(grid)})
+
 
 
 

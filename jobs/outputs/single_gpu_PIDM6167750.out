@@ -1,0 +1,1011 @@
+Starting...
+Experiment: single_gpu_pidm
+Diffusion Config Path: ./config/diffusion.conf
+Current path: /gpfs/home2/scur2194/CV2/DAVOS/modules/PIDM
+val dataset [data.fashion_data::Dataset] of size 8 was created
+training dataset [data.fashion_data::Dataset] of size 8 was created
+#Epoch - 0
+Epoch Time 4 secs
+Model Saved Successfully for #epoch 0 #steps 2
+Generating samples at epoch number 0
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 1
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 1 #steps 4
+#Epoch - 2
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 2 #steps 6
+#Epoch - 3
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 3 #steps 8
+#Epoch - 4
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 4 #steps 10
+#Epoch - 5
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 5 #steps 12
+#Epoch - 6
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 6 #steps 14
+#Epoch - 7
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 7 #steps 16
+#Epoch - 8
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 8 #steps 18
+#Epoch - 9
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 9 #steps 20
+#Epoch - 10
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 10 #steps 22
+Generating samples at epoch number 10
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 11
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 11 #steps 24
+#Epoch - 12
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 12 #steps 26
+#Epoch - 13
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 13 #steps 28
+#Epoch - 14
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 14 #steps 30
+#Epoch - 15
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 15 #steps 32
+#Epoch - 16
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 16 #steps 34
+#Epoch - 17
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 17 #steps 36
+#Epoch - 18
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 18 #steps 38
+#Epoch - 19
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 19 #steps 40
+#Epoch - 20
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 20 #steps 42
+Generating samples at epoch number 20
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 21
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 21 #steps 44
+#Epoch - 22
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 22 #steps 46
+#Epoch - 23
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 23 #steps 48
+#Epoch - 24
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 24 #steps 50
+#Epoch - 25
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 25 #steps 52
+#Epoch - 26
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 26 #steps 54
+#Epoch - 27
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 27 #steps 56
+#Epoch - 28
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 28 #steps 58
+#Epoch - 29
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 29 #steps 60
+#Epoch - 30
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 30 #steps 62
+Generating samples at epoch number 30
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 31
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 31 #steps 64
+#Epoch - 32
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 32 #steps 66
+#Epoch - 33
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 33 #steps 68
+#Epoch - 34
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 34 #steps 70
+#Epoch - 35
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 35 #steps 72
+#Epoch - 36
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 36 #steps 74
+#Epoch - 37
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 37 #steps 76
+#Epoch - 38
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 38 #steps 78
+#Epoch - 39
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 39 #steps 80
+#Epoch - 40
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 40 #steps 82
+Generating samples at epoch number 40
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 41
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 41 #steps 84
+#Epoch - 42
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 42 #steps 86
+#Epoch - 43
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 43 #steps 88
+#Epoch - 44
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 44 #steps 90
+#Epoch - 45
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 45 #steps 92
+#Epoch - 46
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 46 #steps 94
+#Epoch - 47
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 47 #steps 96
+#Epoch - 48
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 48 #steps 98
+#Epoch - 49
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 49 #steps 100
+#Epoch - 50
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 50 #steps 102
+Generating samples at epoch number 50
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 51
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 51 #steps 104
+#Epoch - 52
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 52 #steps 106
+#Epoch - 53
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 53 #steps 108
+#Epoch - 54
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 54 #steps 110
+#Epoch - 55
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 55 #steps 112
+#Epoch - 56
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 56 #steps 114
+#Epoch - 57
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 57 #steps 116
+#Epoch - 58
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 58 #steps 118
+#Epoch - 59
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 59 #steps 120
+#Epoch - 60
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 60 #steps 122
+Generating samples at epoch number 60
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 61
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 61 #steps 124
+#Epoch - 62
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 62 #steps 126
+#Epoch - 63
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 63 #steps 128
+#Epoch - 64
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 64 #steps 130
+#Epoch - 65
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 65 #steps 132
+#Epoch - 66
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 66 #steps 134
+#Epoch - 67
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 67 #steps 136
+#Epoch - 68
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 68 #steps 138
+#Epoch - 69
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 69 #steps 140
+#Epoch - 70
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 70 #steps 142
+Generating samples at epoch number 70
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 71
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 71 #steps 144
+#Epoch - 72
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 72 #steps 146
+#Epoch - 73
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 73 #steps 148
+#Epoch - 74
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 74 #steps 150
+#Epoch - 75
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 75 #steps 152
+#Epoch - 76
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 76 #steps 154
+#Epoch - 77
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 77 #steps 156
+#Epoch - 78
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 78 #steps 158
+#Epoch - 79
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 79 #steps 160
+#Epoch - 80
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 80 #steps 162
+Generating samples at epoch number 80
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 81
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 81 #steps 164
+#Epoch - 82
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 82 #steps 166
+#Epoch - 83
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 83 #steps 168
+#Epoch - 84
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 84 #steps 170
+#Epoch - 85
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 85 #steps 172
+#Epoch - 86
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 86 #steps 174
+#Epoch - 87
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 87 #steps 176
+#Epoch - 88
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 88 #steps 178
+#Epoch - 89
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 89 #steps 180
+#Epoch - 90
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 90 #steps 182
+Generating samples at epoch number 90
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 91
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 91 #steps 184
+#Epoch - 92
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 92 #steps 186
+#Epoch - 93
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 93 #steps 188
+#Epoch - 94
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 94 #steps 190
+#Epoch - 95
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 95 #steps 192
+#Epoch - 96
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 96 #steps 194
+#Epoch - 97
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 97 #steps 196
+#Epoch - 98
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 98 #steps 198
+#Epoch - 99
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 99 #steps 200
+#Epoch - 100
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 100 #steps 202
+Generating samples at epoch number 100
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 101
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 101 #steps 204
+#Epoch - 102
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 102 #steps 206
+#Epoch - 103
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 103 #steps 208
+#Epoch - 104
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 104 #steps 210
+#Epoch - 105
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 105 #steps 212
+#Epoch - 106
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 106 #steps 214
+#Epoch - 107
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 107 #steps 216
+#Epoch - 108
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 108 #steps 218
+#Epoch - 109
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 109 #steps 220
+#Epoch - 110
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 110 #steps 222
+Generating samples at epoch number 110
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 111
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 111 #steps 224
+#Epoch - 112
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 112 #steps 226
+#Epoch - 113
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 113 #steps 228
+#Epoch - 114
+Epoch Time 1 secs
+Model Saved Successfully for #epoch 114 #steps 230
+#Epoch - 115
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 115 #steps 232
+#Epoch - 116
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 116 #steps 234
+#Epoch - 117
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 117 #steps 236
+#Epoch - 118
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 118 #steps 238
+#Epoch - 119
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 119 #steps 240
+#Epoch - 120
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 120 #steps 242
+Generating samples at epoch number 120
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 121
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 121 #steps 244
+#Epoch - 122
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 122 #steps 246
+#Epoch - 123
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 123 #steps 248
+#Epoch - 124
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 124 #steps 250
+#Epoch - 125
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 125 #steps 252
+#Epoch - 126
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 126 #steps 254
+#Epoch - 127
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 127 #steps 256
+#Epoch - 128
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 128 #steps 258
+#Epoch - 129
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 129 #steps 260
+#Epoch - 130
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 130 #steps 262
+Generating samples at epoch number 130
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 131
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 131 #steps 264
+#Epoch - 132
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 132 #steps 266
+#Epoch - 133
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 133 #steps 268
+#Epoch - 134
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 134 #steps 270
+#Epoch - 135
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 135 #steps 272
+#Epoch - 136
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 136 #steps 274
+#Epoch - 137
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 137 #steps 276
+#Epoch - 138
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 138 #steps 278
+#Epoch - 139
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 139 #steps 280
+#Epoch - 140
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 140 #steps 282
+Generating samples at epoch number 140
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 141
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 141 #steps 284
+#Epoch - 142
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 142 #steps 286
+#Epoch - 143
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 143 #steps 288
+#Epoch - 144
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 144 #steps 290
+#Epoch - 145
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 145 #steps 292
+#Epoch - 146
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 146 #steps 294
+#Epoch - 147
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 147 #steps 296
+#Epoch - 148
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 148 #steps 298
+#Epoch - 149
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 149 #steps 300
+#Epoch - 150
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 150 #steps 302
+Generating samples at epoch number 150
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 151
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 151 #steps 304
+#Epoch - 152
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 152 #steps 306
+#Epoch - 153
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 153 #steps 308
+#Epoch - 154
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 154 #steps 310
+#Epoch - 155
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 155 #steps 312
+#Epoch - 156
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 156 #steps 314
+#Epoch - 157
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 157 #steps 316
+#Epoch - 158
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 158 #steps 318
+#Epoch - 159
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 159 #steps 320
+#Epoch - 160
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 160 #steps 322
+Generating samples at epoch number 160
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 161
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 161 #steps 324
+#Epoch - 162
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 162 #steps 326
+#Epoch - 163
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 163 #steps 328
+#Epoch - 164
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 164 #steps 330
+#Epoch - 165
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 165 #steps 332
+#Epoch - 166
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 166 #steps 334
+#Epoch - 167
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 167 #steps 336
+#Epoch - 168
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 168 #steps 338
+#Epoch - 169
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 169 #steps 340
+#Epoch - 170
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 170 #steps 342
+Generating samples at epoch number 170
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 171
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 171 #steps 344
+#Epoch - 172
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 172 #steps 346
+#Epoch - 173
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 173 #steps 348
+#Epoch - 174
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 174 #steps 350
+#Epoch - 175
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 175 #steps 352
+#Epoch - 176
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 176 #steps 354
+#Epoch - 177
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 177 #steps 356
+#Epoch - 178
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 178 #steps 358
+#Epoch - 179
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 179 #steps 360
+#Epoch - 180
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 180 #steps 362
+Generating samples at epoch number 180
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 181
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 181 #steps 364
+#Epoch - 182
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 182 #steps 366
+#Epoch - 183
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 183 #steps 368
+#Epoch - 184
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 184 #steps 370
+#Epoch - 185
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 185 #steps 372
+#Epoch - 186
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 186 #steps 374
+#Epoch - 187
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 187 #steps 376
+#Epoch - 188
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 188 #steps 378
+#Epoch - 189
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 189 #steps 380
+#Epoch - 190
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 190 #steps 382
+Generating samples at epoch number 190
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 191
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 191 #steps 384
+#Epoch - 192
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 192 #steps 386
+#Epoch - 193
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 193 #steps 388
+#Epoch - 194
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 194 #steps 390
+#Epoch - 195
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 195 #steps 392
+#Epoch - 196
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 196 #steps 394
+#Epoch - 197
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 197 #steps 396
+#Epoch - 198
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 198 #steps 398
+#Epoch - 199
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 199 #steps 400
+#Epoch - 200
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 200 #steps 402
+Generating samples at epoch number 200
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 201
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 201 #steps 404
+#Epoch - 202
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 202 #steps 406
+#Epoch - 203
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 203 #steps 408
+#Epoch - 204
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 204 #steps 410
+#Epoch - 205
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 205 #steps 412
+#Epoch - 206
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 206 #steps 414
+#Epoch - 207
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 207 #steps 416
+#Epoch - 208
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 208 #steps 418
+#Epoch - 209
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 209 #steps 420
+#Epoch - 210
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 210 #steps 422
+Generating samples at epoch number 210
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 211
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 211 #steps 424
+#Epoch - 212
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 212 #steps 426
+#Epoch - 213
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 213 #steps 428
+#Epoch - 214
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 214 #steps 430
+#Epoch - 215
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 215 #steps 432
+#Epoch - 216
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 216 #steps 434
+#Epoch - 217
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 217 #steps 436
+#Epoch - 218
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 218 #steps 438
+#Epoch - 219
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 219 #steps 440
+#Epoch - 220
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 220 #steps 442
+Generating samples at epoch number 220
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 221
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 221 #steps 444
+#Epoch - 222
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 222 #steps 446
+#Epoch - 223
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 223 #steps 448
+#Epoch - 224
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 224 #steps 450
+#Epoch - 225
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 225 #steps 452
+#Epoch - 226
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 226 #steps 454
+#Epoch - 227
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 227 #steps 456
+#Epoch - 228
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 228 #steps 458
+#Epoch - 229
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 229 #steps 460
+#Epoch - 230
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 230 #steps 462
+Generating samples at epoch number 230
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 231
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 231 #steps 464
+#Epoch - 232
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 232 #steps 466
+#Epoch - 233
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 233 #steps 468
+#Epoch - 234
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 234 #steps 470
+#Epoch - 235
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 235 #steps 472
+#Epoch - 236
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 236 #steps 474
+#Epoch - 237
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 237 #steps 476
+#Epoch - 238
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 238 #steps 478
+#Epoch - 239
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 239 #steps 480
+#Epoch - 240
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 240 #steps 482
+Generating samples at epoch number 240
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 241
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 241 #steps 484
+#Epoch - 242
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 242 #steps 486
+#Epoch - 243
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 243 #steps 488
+#Epoch - 244
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 244 #steps 490
+#Epoch - 245
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 245 #steps 492
+#Epoch - 246
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 246 #steps 494
+#Epoch - 247
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 247 #steps 496
+#Epoch - 248
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 248 #steps 498
+#Epoch - 249
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 249 #steps 500
+#Epoch - 250
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 250 #steps 502
+Generating samples at epoch number 250
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 251
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 251 #steps 504
+#Epoch - 252
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 252 #steps 506
+#Epoch - 253
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 253 #steps 508
+#Epoch - 254
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 254 #steps 510
+#Epoch - 255
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 255 #steps 512
+#Epoch - 256
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 256 #steps 514
+#Epoch - 257
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 257 #steps 516
+#Epoch - 258
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 258 #steps 518
+#Epoch - 259
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 259 #steps 520
+#Epoch - 260
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 260 #steps 522
+Generating samples at epoch number 260
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 261
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 261 #steps 524
+#Epoch - 262
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 262 #steps 526
+#Epoch - 263
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 263 #steps 528
+#Epoch - 264
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 264 #steps 530
+#Epoch - 265
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 265 #steps 532
+#Epoch - 266
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 266 #steps 534
+#Epoch - 267
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 267 #steps 536
+#Epoch - 268
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 268 #steps 538
+#Epoch - 269
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 269 #steps 540
+#Epoch - 270
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 270 #steps 542
+Generating samples at epoch number 270
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 271
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 271 #steps 544
+#Epoch - 272
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 272 #steps 546
+#Epoch - 273
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 273 #steps 548
+#Epoch - 274
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 274 #steps 550
+#Epoch - 275
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 275 #steps 552
+#Epoch - 276
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 276 #steps 554
+#Epoch - 277
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 277 #steps 556
+#Epoch - 278
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 278 #steps 558
+#Epoch - 279
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 279 #steps 560
+#Epoch - 280
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 280 #steps 562
+Generating samples at epoch number 280
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 281
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 281 #steps 564
+#Epoch - 282
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 282 #steps 566
+#Epoch - 283
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 283 #steps 568
+#Epoch - 284
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 284 #steps 570
+#Epoch - 285
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 285 #steps 572
+#Epoch - 286
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 286 #steps 574
+#Epoch - 287
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 287 #steps 576
+#Epoch - 288
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 288 #steps 578
+#Epoch - 289
+Epoch Time 1 secs
+Model Saved Successfully for #epoch 289 #steps 580
+#Epoch - 290
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 290 #steps 582
+Generating samples at epoch number 290
+Sampling algorithm used: DDIM
+Grid shape: torch.Size([8, 3, 256, 768])
+#Epoch - 291
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 291 #steps 584
+#Epoch - 292
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 292 #steps 586
+#Epoch - 293
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 293 #steps 588
+#Epoch - 294
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 294 #steps 590
+#Epoch - 295
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 295 #steps 592
+#Epoch - 296
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 296 #steps 594
+#Epoch - 297
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 297 #steps 596
+#Epoch - 298
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 298 #steps 598
+#Epoch - 299
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 299 #steps 600
+Finished!
+
+JOB STATISTICS
+==============
+Job ID: 6167750
+Cluster: snellius
+User/Group: scur2194/scur2194
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 01:19:10
+CPU Efficiency: 14.97% of 08:48:54 core-walltime
+Job Wall-clock time: 00:29:23
+Memory Utilized: 3.79 GB
+Memory Efficiency: 6.57% of 57.62 GB
