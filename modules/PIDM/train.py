@@ -192,7 +192,7 @@ def train(conf, loader, val_loader, model, ema, diffusion, betas, optimizer, sch
                     conf.training.ckpt_path + f"/model_{str(i).zfill(6)}.pt"
                 )
 
-            if i % args.sample_every_iters == 0:
+            if (epoch)%args.save_wandb_images_every_epochs==0:
                 print ('Generating samples at epoch number ' + str(epoch))
                 with torch.no_grad():
                     if args.sample_algorithm == 'ddpm':
@@ -276,7 +276,7 @@ def main(settings, EXP_NAME):
 
     [args, DiffConf, DataConf] = settings
 
-    if is_main_process(): wandb.init(project="DAVOS", entity="DAVOS-CV-org", name=EXP_NAME, settings=wandb.Settings(code_dir="."))
+    if is_main_process(): wandb.init(project="DAVOS", entity="DAVOS-CV", name=EXP_NAME, settings=wandb.Settings(code_dir="."))
 
     if DiffConf.ckpt is not None:  #? If training from checkpoint skip warmup
         DiffConf.training.scheduler.warmup = 0
