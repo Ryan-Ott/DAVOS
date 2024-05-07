@@ -55,7 +55,7 @@ def setup_for_distributed(is_master):
     __builtin__.print = print
 
 def is_main_process():
-    # always true for us bc we're training on single GPU
+    #? Always true for single GPU
     try:
         if dist.get_rank()==0:
             return True
@@ -107,9 +107,6 @@ def accumulate(model1, model2, decay=0.9999):
 
 
 def train(conf, loader, val_loader, model, ema, diffusion, betas, optimizer, scheduler, guidance_prob, cond_scale, device, wandb):
-
-    import time
-
     i = 0
 
     loss_list = []
@@ -117,22 +114,18 @@ def train(conf, loader, val_loader, model, ema, diffusion, betas, optimizer, sch
     loss_vb_list = []
  
     for epoch in range(300):
-
         if is_main_process: print ('#Epoch - '+str(epoch))
 
         start_time = time.time()
 
         for batch in tqdm(loader):
-
             i = i + 1
-
-            # forming a combined batch that includes both the original and target images, 
-            # possibly for processing both directions in a single pass (source to target and target to source), enhancing the training efficiency.
+            
+            #? Forming a combined batch that includes both the original and target images, 
+            #? Possibly for processing both directions in a single pass (source to target and target to source), enhancing the training efficiency.
             img = torch.cat([batch['source_image'], batch['target_image']], 0)  #? Not sure yet why these get concatenated
             target_img = torch.cat([batch['target_image'], batch['source_image']], 0)  #? Same here
-
-            # providing the model with both perspectives (source pose and target pose) in each batch
-            target_pose = torch.cat([batch['target_skeleton'], batch['source_skeleton']], 0)
+            target_pose = torch.cat([batch['target_skeleton'], batch['source_skeleton']], 0)  #? Providing the model with both perspectives (source pose and target pose) in each batch
 
             img = img.to(device)
             target_img = target_img.to(device)
@@ -144,20 +137,21 @@ def train(conf, loader, val_loader, model, ema, diffusion, betas, optimizer, sch
                 device=device,
             )
 
+            #? Calculate loss
             loss_dict = diffusion.training_losses(model, x_start = target_img, t = time_t, cond_input = [img, target_pose], prob = 1 - guidance_prob)
-            
             loss = loss_dict['loss'].mean()
             loss_mse = loss_dict['mse'].mean()
             loss_vb = loss_dict['vb'].mean()
         
-
+            #? Backpropagation
             optimizer.zero_grad()
             loss.backward()
             nn.utils.clip_grad_norm_(model.parameters(), 1)
             scheduler.step()
             optimizer.step()
+            
+            #? Logging
             loss = loss_dict['loss'].mean()
-
             loss_list.append(loss.detach().item())
             loss_mean_list.append(loss_mse.detach().item())
             loss_vb_list.append(loss_vb.detach().item())
@@ -166,14 +160,13 @@ def train(conf, loader, val_loader, model, ema, diffusion, betas, optimizer, sch
                 model_module = model.module
             else:
                 model_module = model
-                
+            
+            #? Accumulate model parameters using EMA
             accumulate(
                 ema, model_module, 0 if i < conf.training.scheduler.warmup else 0.9999
             )
 
-
-            if i%args.save_wandb_logs_every_iters == 0 and is_main_process():
-
+            if i % args.save_wandb_logs_every_iters == 0 and is_main_process():
                 wandb.log({'loss':(sum(loss_list)/len(loss_list)), 
                             'loss_vb':(sum(loss_vb_list)/len(loss_vb_list)), 
                             'loss_mean':(sum(loss_mean_list)/len(loss_mean_list)), 
@@ -182,12 +175,9 @@ def train(conf, loader, val_loader, model, ema, diffusion, betas, optimizer, sch
                 loss_mean_list = []
                 loss_vb_list = []
 
-
-            if i%args.save_checkpoints_every_iters == 0 and is_main_process():
-
+            if i % args.save_checkpoints_every_iters == 0 and is_main_process():
                 if conf.distributed:
                     model_module = model.module
-
                 else:
                     model_module = model
 
@@ -202,14 +192,39 @@ def train(conf, loader, val_loader, model, ema, diffusion, betas, optimizer, sch
                     conf.training.ckpt_path + f"/model_{str(i).zfill(6)}.pt"
                 )
 
-        if is_main_process():
+            if i % args.sample_every_iters == 0:
+                print ('Generating samples at epoch number ' + str(epoch))
+                with torch.no_grad():
+                    if args.sample_algorithm == 'ddpm':
+                        print ('Sampling algorithm used: DDPM')
+                        samples = diffusion.p_sample_loop(ema, x_cond = [img, target_pose], progress = True, cond_scale = cond_scale)
+                    elif args.sample_algorithm == 'ddim':
+                        print ('Sampling algorithm used: DDIM')
+                        nsteps = 50
+                        noise = torch.randn(img.shape).cuda()
+                        seq = range(0, 1000, 1000//nsteps)
+                        xs, x0_preds = ddim_steps(noise, seq, ema, betas.cuda(), [img, target_pose])
+                        samples = xs[-1].cuda()
+                
+                grid = torch.cat([img, target_pose[:,:3], samples], -1)  #? What does this exactly do?
+                #? Grid shape: torch.Size([8, 3, 256, 768]) == [batch_size, 3, img_size, 3*img_size]
+                
+                if conf.distributed:  #* Added this if else for single-GPU setup, no need to gather samples from different processes if we're not using torch.distributed
+                    gathered_samples = [torch.zeros_like(grid) for _ in range(dist.get_world_size())]  #? Gather samples from all processes in multi-GPU set up
+                    dist.all_gather(gathered_samples, grid)
 
+                    if is_main_process():
+                        wandb.log({'train_samples':wandb.Image(torch.cat(gathered_samples, -2))})
+                else:
+                    wandb.log({'train_samples':wandb.Image(grid)})
+            
+
+        if is_main_process():
             print ('Epoch Time '+str(int(time.time()-start_time))+' secs')
             print ('Model Saved Successfully for #epoch '+str(epoch)+' #steps '+str(i))
 
             if conf.distributed:
                 model_module = model.module
-
             else:
                 model_module = model
 
@@ -222,11 +237,9 @@ def train(conf, loader, val_loader, model, ema, diffusion, betas, optimizer, sch
                     "conf": conf,
                 },
                 conf.training.ckpt_path + '/last.pt'
-               
             )
 
         if (epoch)%args.save_wandb_images_every_epochs==0:
-
             print ('Generating samples at epoch number ' + str(epoch))
 
             val_batch = next(val_loader)
@@ -234,7 +247,6 @@ def train(conf, loader, val_loader, model, ema, diffusion, betas, optimizer, sch
             val_pose = val_batch['target_skeleton'].cuda()
 
             with torch.no_grad():
-
                 if args.sample_algorithm == 'ddpm':
                     print ('Sampling algorithm used: DDPM')
                     samples = diffusion.p_sample_loop(ema, x_cond = [val_img, val_pose], progress = True, cond_scale = cond_scale)
@@ -246,30 +258,25 @@ def train(conf, loader, val_loader, model, ema, diffusion, betas, optimizer, sch
                     xs, x0_preds = ddim_steps(noise, seq, ema, betas.cuda(), [val_img, val_pose])
                     samples = xs[-1].cuda()
             
-            # visually combine and compare different types of images side by side in a single composite image
-            grid = torch.cat([val_img, val_pose[:,:3], samples], -1)
-            # combines original image, pose, and the generated samples
+            #? Visually combine and compare different types of images side by side in a single composite image
+            grid = torch.cat([val_img, val_pose[:,:3], samples], -1)  #? Combines original image, target pose and generated samples
             #? Grid shape: torch.Size([8, 3, 256, 768]) == [batch_size, 3, img_size, 3*img_size]
             
-            if conf.distributed:
-                #? Gather samples from all processes in multi-GPU set up
-                gathered_samples = [torch.zeros_like(grid) for _ in range(dist.get_world_size())]
+            if conf.distributed:  #* Added this if else for single-GPU setup, no need to gather samples from different processes if we're not using torch.distributed
+                gathered_samples = [torch.zeros_like(grid) for _ in range(dist.get_world_size())]  #? Gather samples from all processes in multi-GPU set up
                 dist.all_gather(gathered_samples, grid)                
 
                 if is_main_process():
-                    
-                    wandb.log({'samples':wandb.Image(torch.cat(gathered_samples, -2))})
-            else:  #* Added this if else for single-GPU setup, no need to gather samples from different processes
-                wandb.log({'samples':wandb.Image(grid)})
-
-
+                    wandb.log({'val_samples':wandb.Image(torch.cat(gathered_samples, -2))})
+            else:
+                wandb.log({'val_samples':wandb.Image(grid)})
 
 
 def main(settings, EXP_NAME):
 
     [args, DiffConf, DataConf] = settings
 
-    if is_main_process(): wandb.init(project="person-synthesis", name = EXP_NAME,  settings = wandb.Settings(code_dir="."))
+    if is_main_process(): wandb.init(project="DAVOS", entity="DAVOS-CV-org", name=EXP_NAME, settings=wandb.Settings(code_dir="."))
 
     if DiffConf.ckpt is not None:  #? If training from checkpoint skip warmup
         DiffConf.training.scheduler.warmup = 0
@@ -368,10 +375,10 @@ if __name__ == "__main__":
     DataConf.data.path = args.dataset_path
 
     if is_main_process():  #? Always returns True on single GPU
-
         if not os.path.isdir(args.save_path): os.mkdir(args.save_path)
         if not os.path.isdir(DiffConf.training.ckpt_path): os.mkdir(DiffConf.training.ckpt_path)
 
+    #? Uncomment this for training from a checkpoint
     #DiffConf.ckpt = "checkpoints/last.pt"
 
     main(settings = [args, DiffConf, DataConf], EXP_NAME = args.exp_name)
