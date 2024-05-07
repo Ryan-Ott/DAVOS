@@ -55,6 +55,7 @@ def setup_for_distributed(is_master):
     __builtin__.print = print
 
 def is_main_process():
+    # always true for us bc we're training on single GPU
     try:
         if dist.get_rank()==0:
             return True
@@ -85,6 +86,8 @@ def accumulate(model1, model2, decay=0.9999):
     This function is used in the context of a diffusion model to accumulate the parameters
     of two models, `model1` and `model2`, using exponential moving average. The accumulated
     parameters are stored in `model1`.
+    --> `model1` is the EMA model and will be used during inference
+    --> `model2` is the training model and is updated with each training batch
 
     Parameters:
         model1 (torch.nn.Module): The first model whose parameters will be accumulated.
@@ -123,8 +126,12 @@ def train(conf, loader, val_loader, model, ema, diffusion, betas, optimizer, sch
 
             i = i + 1
 
+            # forming a combined batch that includes both the original and target images, 
+            # possibly for processing both directions in a single pass (source to target and target to source), enhancing the training efficiency.
             img = torch.cat([batch['source_image'], batch['target_image']], 0)  #? Not sure yet why these get concatenated
             target_img = torch.cat([batch['target_image'], batch['source_image']], 0)  #? Same here
+
+            # providing the model with both perspectives (source pose and target pose) in each batch
             target_pose = torch.cat([batch['target_skeleton'], batch['source_skeleton']], 0)
 
             img = img.to(device)
@@ -239,7 +246,9 @@ def train(conf, loader, val_loader, model, ema, diffusion, betas, optimizer, sch
                     xs, x0_preds = ddim_steps(noise, seq, ema, betas.cuda(), [val_img, val_pose])
                     samples = xs[-1].cuda()
             
-            grid = torch.cat([val_img, val_pose[:,:3], samples], -1)  #? What does this exactly do?
+            # visually combine and compare different types of images side by side in a single composite image
+            grid = torch.cat([val_img, val_pose[:,:3], samples], -1)
+            # combines original image, pose, and the generated samples
             #? Grid shape: torch.Size([8, 3, 256, 768]) == [batch_size, 3, img_size, 3*img_size]
             
             if conf.distributed:
