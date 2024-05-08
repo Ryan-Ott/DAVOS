@@ -107,8 +107,35 @@ def accumulate(model1, model2, decay=0.9999):
         par1[k].data.mul_(decay).add_(par2[k].data, alpha=1 - decay)
 
 
-def train(conf, loader, val_loader, model, ema, diffusion, betas, optimizer, scheduler, guidance_prob, cond_scale, device, wandb):
-    i = 0
+def generate_samples(diffusion, ema, img, target_pose, args, betas, distributed, val):
+    sample_type = "validation" if val else "training"
+    print(f'Generating {sample_type} samples')
+    sample_start_time = time.time()
+    with torch.no_grad():
+        if args.sample_algorithm == 'ddpm':
+            samples = diffusion.p_sample_loop(ema, x_cond=[img, target_pose], progress=True, cond_scale=args.cond_scale)
+        elif args.sample_algorithm == 'ddim':
+            nsteps = 50
+            noise = torch.randn(img.shape).cuda()
+            seq = range(0, 1000, 1000 // nsteps)
+            xs, x0_preds = ddim_steps(noise, seq, ema, betas.cuda(), [img, target_pose])
+            samples = xs[-1].cuda()
+
+    grid = torch.cat([img, target_pose[:, :3], samples], -1)
+    if distributed:
+        gathered_samples = [torch.zeros_like(grid) for _ in range(dist.get_world_size())]
+        dist.all_gather(gathered_samples, grid)
+        if is_main_process():
+            wandb.log({f'{sample_type}_samples': wandb.Image(torch.cat(gathered_samples, -2))})
+    else:
+        wandb.log({f'{sample_type}_samples': wandb.Image(grid)})
+
+    print(f'Sampling took {int(time.time() - sample_start_time)} secs')
+
+
+def train(conf, loader, val_loader, model, ema, diffusion, betas, optimizer, scheduler, args, wandb):
+    device = args.device
+    i = -1
     loss_list = []
     loss_mean_list = []
     loss_vb_list = []
@@ -136,7 +163,7 @@ def train(conf, loader, val_loader, model, ema, diffusion, betas, optimizer, sch
             )
 
             #? Calculate loss
-            loss_dict = diffusion.training_losses(model, x_start = target_img, t = time_t, cond_input = [img, target_pose], prob = 1 - guidance_prob)
+            loss_dict = diffusion.training_losses(model, x_start = target_img, t = time_t, cond_input = [img, target_pose], prob = 1 - args.guidance_prob)
             loss = loss_dict['loss'].mean()
             loss_mse = loss_dict['mse'].mean()
             loss_vb = loss_dict['vb'].mean()
@@ -172,7 +199,9 @@ def train(conf, loader, val_loader, model, ema, diffusion, betas, optimizer, sch
                 loss_mean_list = []
                 loss_vb_list = []
 
-            if epoch % args.save_checkpoints_every_epochs == 0 and is_main_process():
+
+        if is_main_process():            
+            if ((epoch % args.save_checkpoints_every_epochs == 0) or (epoch == args.epochs-1)):
                 torch.save(
                     {
                         "model": model_module.state_dict(),
@@ -181,100 +210,26 @@ def train(conf, loader, val_loader, model, ema, diffusion, betas, optimizer, sch
                         "optimizer": optimizer.state_dict(),
                         "conf": conf,
                     },
-                    conf.training.ckpt_path + f"/model_epoch{str(epoch).zfill(6)}.pt"
-                )
-                print(f'Saved model after epoch {epoch}, step {i} under {conf.training.ckpt_path}')
+                    conf.training.ckpt_path + f"/model_epoch_{str(epoch).zfill(3)}.pt")
+                print(f'Saved model checkpoint after epoch {epoch} (step {i}) under {conf.training.ckpt_path}')
 
-            if epoch % args.save_wandb_images_every_epochs==0:
-                print(f'Generating training samples after epoch {epoch} step {i}')
-                sample_start_time = time.time()
-                with torch.no_grad():
-                    if args.sample_algorithm == 'ddpm':
-                        print('Sampling algorithm used: DDPM')
-                        samples = diffusion.p_sample_loop(ema, x_cond = [img, target_pose], progress = True, cond_scale = cond_scale)
-                    elif args.sample_algorithm == 'ddim':
-                        print('Sampling algorithm used: DDIM')
-                        nsteps = 50
-                        noise = torch.randn(img.shape).cuda()
-                        seq = range(0, 1000, 1000//nsteps)
-                        xs, x0_preds = ddim_steps(noise, seq, ema, betas.cuda(), [img, target_pose])
-                        samples = xs[-1].cuda()
+            if (epoch % args.save_wandb_images_every_epochs == 0) or (epoch == args.epochs-1):
+                print(f'Generating samples after epoch {epoch} (step {i})')
+                generate_samples(diffusion, ema, img, target_pose, args, betas, conf.distributed, val=False)  # ToDo: check whether just passing the img and pose like this is sufficient for training samples
                 
-                grid = torch.cat([img, target_pose[:,:3], samples], -1)  #? What does this exactly do?
-                #? Grid shape: torch.Size([8, 3, 256, 768]) == [batch_size, 3, img_size, 3*img_size]
+                val_batch = next(val_loader)
+                val_img = val_batch['source_image'].cuda()
+                val_pose = val_batch['target_skeleton'].cuda()
+                generate_samples(diffusion, ema, val_img, val_pose, args, betas, conf.distributed, val=True)
                 
-                if conf.distributed:  #* Added this if else for single-GPU setup, no need to gather samples from different processes if we're not using torch.distributed
-                    gathered_samples = [torch.zeros_like(grid) for _ in range(dist.get_world_size())]  #? Gather samples from all processes in multi-GPU set up
-                    dist.all_gather(gathered_samples, grid)
-
-                    if is_main_process():
-                        wandb.log({'train_samples':wandb.Image(torch.cat(gathered_samples, -2))})
-                else:
-                    wandb.log({'train_samples':wandb.Image(grid)})
-
-                print(f'Sampling took {int(time.time()-sample_start_time)} secs')
-
-        if is_main_process():
-            print('Epoch Time '+str(int(time.time()-start_time))+' secs')
-            # print('Model Saved Successfully for #epoch '+str(epoch)+' #steps '+str(i))
-
-            if conf.distributed:
-                model_module = model.module
-            else:
-                model_module = model
-
-            torch.save(
-                {
-                    "model": model_module.state_dict(),
-                    "ema": ema.state_dict(),
-                    "scheduler": scheduler.state_dict(),
-                    "optimizer": optimizer.state_dict(),
-                    "conf": conf,
-                },
-                conf.training.ckpt_path + '/last.pt'
-            )
-
-        if epoch % args.save_wandb_images_every_epochs == 0:
-            print(f'Generating validation samples after epoch {epoch} step {i}')
-            sample_start_time = time.time()
-
-            val_batch = next(val_loader)
-            val_img = val_batch['source_image'].cuda()
-            val_pose = val_batch['target_skeleton'].cuda()
-
-            with torch.no_grad():
-                if args.sample_algorithm == 'ddpm':
-                    print('Sampling algorithm used: DDPM')
-                    samples = diffusion.p_sample_loop(ema, x_cond = [val_img, val_pose], progress = True, cond_scale = cond_scale)
-                elif args.sample_algorithm == 'ddim':
-                    print('Sampling algorithm used: DDIM')
-                    nsteps = 50
-                    noise = torch.randn(val_img.shape).cuda()
-                    seq = range(0, 1000, 1000//nsteps)
-                    xs, x0_preds = ddim_steps(noise, seq, ema, betas.cuda(), [val_img, val_pose])
-                    samples = xs[-1].cuda()
-            
-            #? Visually combine and compare different types of images side by side in a single composite image
-            grid = torch.cat([val_img, val_pose[:,:3], samples], -1)  #? Combines original image, target pose and generated samples
-            #? Grid shape: torch.Size([8, 3, 256, 768]) == [batch_size, 3, img_size, 3*img_size]
-            
-            if conf.distributed:  #* Added this if else for single-GPU setup, no need to gather samples from different processes if we're not using torch.distributed
-                gathered_samples = [torch.zeros_like(grid) for _ in range(dist.get_world_size())]  #? Gather samples from all processes in multi-GPU set up
-                dist.all_gather(gathered_samples, grid)                
-
-                if is_main_process():
-                    wandb.log({'val_samples':wandb.Image(torch.cat(gathered_samples, -2))})
-            else:
-                wandb.log({'val_samples':wandb.Image(grid)})
-            
-            print(f'Sampling took {int(time.time()-sample_start_time)} secs')
+        print(f'Epoch Time: {int(time.time()-start_time)} secs')
 
 
 def main(settings, EXP_NAME):
     [args, DiffConf, DataConf] = settings
 
     if is_main_process():
-        wandb.init(project="DAVOS", entity="DAVOS-CV", name=EXP_NAME, settings=wandb.Settings(code_dir="."))
+        wandb.init(project="DAVOS", entity="DAVOS-CV", name=EXP_NAME, settings=wandb.Settings(code_dir="."), config=vars(args))
 
     if DiffConf.ckpt is not None:  #? If training from checkpoint skip warmup
         DiffConf.training.scheduler.warmup = 0
@@ -331,7 +286,7 @@ def main(settings, EXP_NAME):
     diffusion = create_gaussian_diffusion(betas, predict_xstart = False)
 
     train(
-        DiffConf, train_dataset, val_dataset, model, ema, diffusion, betas, optimizer, scheduler, args.guidance_prob, args.cond_scale, args.device, wandb
+        DiffConf, train_dataset, val_dataset, model, ema, diffusion, betas, optimizer, scheduler, args, wandb
     )
 
 if __name__ == "__main__":
@@ -366,6 +321,7 @@ if __name__ == "__main__":
     print(f'Data Config Path: {args.DataConfigPath}')
     print(f'Dataset Path: {args.dataset_path}')
     print(f'Current path: {os.getcwd()}')
+    print(f'Sampling algorithm used: {args.sample_algorithm.upper()}')
 
     #? Configuration objects storing things like paths, schedules, flags, hyperparameters etc...
     DiffConf = DiffConfig(DiffusionConfig,  args.DiffConfigPath, args.opts, False)

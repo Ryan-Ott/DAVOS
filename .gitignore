@@ -166,4 +166,4 @@ cython_debug/
 **/.DS_Store
 
 # Unnecessary checkpoints
-**/checkpoints/single_gpu_pidm
+**/checkpoints/**/*

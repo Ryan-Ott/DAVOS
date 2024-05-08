@@ -1,0 +1,13 @@
+Starting...
+Experiment: single_gpu_pidm_15h
+Diffusion Config Path: ./config/diffusion.conf
+Data Config Path: ./config/data.yaml
+Dataset Path: dataset/trial_dataset
+Current path: /gpfs/home2/scur2194/CV2/DAVOS/modules/PIDM
+Sampling algorithm used: DDPM
+val dataset [data.fashion_data::Dataset] of size 8 was created
+training dataset [data.fashion_data::Dataset] of size 8 was created
+#Epoch - 0
+Saved model checkpoint after epoch 0 (step 1) under checkpoints/single_gpu_pidm_15h
+Generating samples after epoch 0 (step 1)
+Generating training samples
