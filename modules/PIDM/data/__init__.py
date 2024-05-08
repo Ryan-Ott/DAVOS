@@ -66,8 +66,6 @@ def get_dataloader(opt, distributed, is_inference):
 
 
 def get_train_val_dataloader(opt, labels_required=False, distributed = False):
-
-
     val_dataset = create_dataloader(opt, distributed, labels_required = labels_required, is_inference=True,)
     train_dataset = create_dataloader(opt, distributed, labels_required = labels_required, is_inference=False)
         

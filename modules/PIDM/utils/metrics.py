@@ -83,7 +83,7 @@ class FID():
         if not os.path.exists(generated_path):
             raise RuntimeError('Invalid path: %s' % generated_path)
 
-        print ('exp-path - '+generated_path)
+        print('exp-path - '+generated_path)
 
         print('calculate gt_path statistics...')
         m1, s1 = self.compute_statistics_of_path(gt_path, self.verbose)
@@ -651,7 +651,7 @@ if __name__ == "__main__":
     LPIPS = lpips_obj.calculate_from_disk(distorated_list, gt_list, sort=False)
     REC = rec.calculate_from_disk(distorated_list, gt_list, distorated_path, sort=False, debug=False)
 
-    print ("FID: "+str(FID)+"\nLPIPS: "+str(LPIPS)+"\nSSIM: "+str(REC))
+    print("FID: "+str(FID)+"\nLPIPS: "+str(LPIPS)+"\nSSIM: "+str(REC))
 
 
 

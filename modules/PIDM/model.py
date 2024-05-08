@@ -109,7 +109,7 @@ class ResBlock(nn.Module):
             time_scale = 1e-10
             norm_affine = False
         
-        #print (in_channel)
+        #print(in_channel)
 
         self.norm1 = nn.GroupNorm(32, in_channel)
         self.activation1 = Swish()

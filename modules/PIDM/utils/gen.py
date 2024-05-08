@@ -89,7 +89,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    print ('Experiment: '+ args.exp_name)
+    print('Experiment: '+ args.exp_name)
 
     cond_scale = args.cond_scale
     sample_algorithm = args.sample_algorithm # options: DDPM, DDIM
@@ -135,7 +135,7 @@ if __name__ == "__main__":
 
             batch = next(val_dataset)
 
-            print ('batch_id-'+str(batch_it))
+            print('batch_id-'+str(batch_it))
 
             img = batch['source_image'].cuda()
             target_pose = batch['target_skeleton'].cuda()
@@ -173,4 +173,4 @@ if __name__ == "__main__":
 
             else:
 
-                print ('ERROR! Sample algorithm not defined.')
+                print('ERROR! Sample algorithm not defined.')

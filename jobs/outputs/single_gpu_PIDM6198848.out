@@ -1,0 +1,53 @@
+Starting...
+Experiment: single_gpu_pidm
+Diffusion Config Path: ./config/diffusion.conf
+Data Config Path: ./config/data.yaml
+Dataset Path: dataset/trial_dataset
+Current path: /gpfs/home2/scur2194/CV2/DAVOS/modules/PIDM
+val dataset [data.fashion_data::Dataset] of size 8 was created
+training dataset [data.fashion_data::Dataset] of size 8 was created
+#Epoch - 0
+Saved model after epoch 0, step 1 under checkpoints/single_gpu_pidm
+Generating training samples after epoch 0 step 1
+Sampling algorithm used: DDPM
+Sampling took 237 secs
+Saved model after epoch 0, step 2 under checkpoints/single_gpu_pidm
+Generating training samples after epoch 0 step 2
+Sampling algorithm used: DDPM
+Sampling took 237 secs
+Epoch Time 484 secs
+Generating validation samples after epoch 0 step 2
+Sampling algorithm used: DDPM
+Sampling took 238 secs
+#Epoch - 1
+Epoch Time 2 secs
+#Epoch - 2
+Saved model after epoch 2, step 5 under checkpoints/single_gpu_pidm
+Generating training samples after epoch 2 step 5
+Sampling algorithm used: DDPM
+Sampling took 237 secs
+Saved model after epoch 2, step 6 under checkpoints/single_gpu_pidm
+Generating training samples after epoch 2 step 6
+Sampling algorithm used: DDPM
+Sampling took 237 secs
+Epoch Time 481 secs
+Generating validation samples after epoch 2 step 6
+Sampling algorithm used: DDPM
+Sampling took 238 secs
+#Epoch - 3
+Epoch Time 2 secs
+Finished!
+
+JOB STATISTICS
+==============
+Job ID: 6198848
+Cluster: snellius
+User/Group: scur2194/scur2194
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:25:33
+CPU Efficiency: 5.72% of 07:27:00 core-walltime
+Job Wall-clock time: 00:24:50
+Memory Utilized: 4.13 GB
+Memory Efficiency: 7.17% of 57.62 GB

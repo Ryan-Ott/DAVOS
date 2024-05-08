@@ -5,7 +5,7 @@
 #SBATCH --job-name=single_gpu_PIDM
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=3
-#SBATCH --time=01:00:00
+#SBATCH --time=02:00:00
 #SBATCH --mem=59000M
 #SBATCH --output=jobs/outputs/single_gpu_PIDM%A.out
 #SBATCH --error=jobs/outputs/single_gpu_PIDM%A_error.out
@@ -24,8 +24,10 @@ conda activate PIDM
 python train.py \
         --exp_name 'single_gpu_pidm' \
         --dataset_path 'dataset/trial_dataset' \
-        --batch_size 8 \
         --n_gpu 1 \
-        --sample_algorithm 'ddpm'
+        --sample_algorithm 'ddpm' \
+        --epochs 4 \
+        --save_checkpoints_every_epochs 2 \
+        --save_wandb_images_every_epochs 2
 
 echo "Finished!"

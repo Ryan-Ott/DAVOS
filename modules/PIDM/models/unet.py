@@ -701,7 +701,7 @@ class BeatGANsEncoder(nn.Module):
                 # print(i, j, h.shape)
                 hs[i].append(h)
                 results.append(h)
-                #print (h.shape)
+                #print(h.shape)
                 k += 1
         assert k == len(self.input_blocks)
 
