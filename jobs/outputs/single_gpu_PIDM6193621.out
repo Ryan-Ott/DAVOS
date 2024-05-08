@@ -1,0 +1,173 @@
+Starting...
+Experiment: single_gpu_pidm
+Diffusion Config Path: ./config/diffusion.conf
+Current path: /gpfs/home2/scur2194/CV2/DAVOS/modules/PIDM
+val dataset [data.fashion_data::Dataset] of size 8 was created
+training dataset [data.fashion_data::Dataset] of size 8 was created
+#Epoch - 0
+Generating samples at epoch number 0
+Sampling algorithm used: DDPM
+Generating samples at epoch number 0
+Sampling algorithm used: DDPM
+Epoch Time 479 secs
+Model Saved Successfully for #epoch 0 #steps 2
+Generating samples at epoch number 0
+Sampling algorithm used: DDPM
+#Epoch - 1
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 1 #steps 4
+#Epoch - 2
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 2 #steps 6
+#Epoch - 3
+Epoch Time 1 secs
+Model Saved Successfully for #epoch 3 #steps 8
+#Epoch - 4
+Epoch Time 1 secs
+Model Saved Successfully for #epoch 4 #steps 10
+#Epoch - 5
+Epoch Time 1 secs
+Model Saved Successfully for #epoch 5 #steps 12
+#Epoch - 6
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 6 #steps 14
+#Epoch - 7
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 7 #steps 16
+#Epoch - 8
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 8 #steps 18
+#Epoch - 9
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 9 #steps 20
+#Epoch - 10
+Generating samples at epoch number 10
+Sampling algorithm used: DDPM
+Generating samples at epoch number 10
+Sampling algorithm used: DDPM
+Epoch Time 475 secs
+Model Saved Successfully for #epoch 10 #steps 22
+Generating samples at epoch number 10
+Sampling algorithm used: DDPM
+#Epoch - 11
+Epoch Time 1 secs
+Model Saved Successfully for #epoch 11 #steps 24
+#Epoch - 12
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 12 #steps 26
+#Epoch - 13
+Epoch Time 1 secs
+Model Saved Successfully for #epoch 13 #steps 28
+#Epoch - 14
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 14 #steps 30
+#Epoch - 15
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 15 #steps 32
+#Epoch - 16
+Epoch Time 1 secs
+Model Saved Successfully for #epoch 16 #steps 34
+#Epoch - 17
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 17 #steps 36
+#Epoch - 18
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 18 #steps 38
+#Epoch - 19
+Epoch Time 1 secs
+Model Saved Successfully for #epoch 19 #steps 40
+#Epoch - 20
+Generating samples at epoch number 20
+Sampling algorithm used: DDPM
+Generating samples at epoch number 20
+Sampling algorithm used: DDPM
+Epoch Time 475 secs
+Model Saved Successfully for #epoch 20 #steps 42
+Generating samples at epoch number 20
+Sampling algorithm used: DDPM
+#Epoch - 21
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 21 #steps 44
+#Epoch - 22
+Epoch Time 1 secs
+Model Saved Successfully for #epoch 22 #steps 46
+#Epoch - 23
+Epoch Time 1 secs
+Model Saved Successfully for #epoch 23 #steps 48
+#Epoch - 24
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 24 #steps 50
+#Epoch - 25
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 25 #steps 52
+#Epoch - 26
+Epoch Time 1 secs
+Model Saved Successfully for #epoch 26 #steps 54
+#Epoch - 27
+Epoch Time 1 secs
+Model Saved Successfully for #epoch 27 #steps 56
+#Epoch - 28
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 28 #steps 58
+#Epoch - 29
+Epoch Time 1 secs
+Model Saved Successfully for #epoch 29 #steps 60
+#Epoch - 30
+Generating samples at epoch number 30
+Sampling algorithm used: DDPM
+Generating samples at epoch number 30
+Sampling algorithm used: DDPM
+Epoch Time 476 secs
+Model Saved Successfully for #epoch 30 #steps 62
+Generating samples at epoch number 30
+Sampling algorithm used: DDPM
+#Epoch - 31
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 31 #steps 64
+#Epoch - 32
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 32 #steps 66
+#Epoch - 33
+Epoch Time 1 secs
+Model Saved Successfully for #epoch 33 #steps 68
+#Epoch - 34
+Epoch Time 1 secs
+Model Saved Successfully for #epoch 34 #steps 70
+#Epoch - 35
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 35 #steps 72
+#Epoch - 36
+Epoch Time 1 secs
+Model Saved Successfully for #epoch 36 #steps 74
+#Epoch - 37
+Epoch Time 1 secs
+Model Saved Successfully for #epoch 37 #steps 76
+#Epoch - 38
+Epoch Time 2 secs
+Model Saved Successfully for #epoch 38 #steps 78
+#Epoch - 39
+Epoch Time 1 secs
+Model Saved Successfully for #epoch 39 #steps 80
+#Epoch - 40
+Generating samples at epoch number 40
+Sampling algorithm used: DDPM
+Generating samples at epoch number 40
+Sampling algorithm used: DDPM
+Epoch Time 475 secs
+Model Saved Successfully for #epoch 40 #steps 82
+Generating samples at epoch number 40
+Sampling algorithm used: DDPM
+
+JOB STATISTICS
+==============
+Job ID: 6193621
+Cluster: snellius
+User/Group: scur2194/scur2194
+State: TIMEOUT (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:01
+CPU Efficiency: 0.00% of 18:02:06 core-walltime
+Job Wall-clock time: 01:00:07
+Memory Utilized: 4.14 GB
+Memory Efficiency: 7.19% of 57.62 GB
