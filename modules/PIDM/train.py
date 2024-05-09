@@ -149,7 +149,7 @@ def train(conf, loader, val_loader, model, ema, diffusion, betas, optimizer, sch
             #? Forming a combined batch that includes both the original and target images, 
             #? Possibly for processing both directions in a single pass (source to target and target to source), enhancing the training efficiency.
             img = torch.cat([batch['source_image'], batch['target_image']], 0)  #? Not sure yet why these get concatenated
-            target_img = torch.cat([batch['target_image'], batch['source_image']], 0)  #? Same here
+            target_img = torch.cat([batch['target_image'], batch['source_image']], 0)  #? Same here - also, why the zero at the end?
             target_pose = torch.cat([batch['target_skeleton'], batch['source_skeleton']], 0)  #? Providing the model with both perspectives (source pose and target pose) in each batch
 
             img = img.to(device)

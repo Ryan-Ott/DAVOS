@@ -20,9 +20,7 @@ def find_dataset_using_name(dataset_name):
             dataset = cls
             
     if dataset is None:
-        raise ValueError("In %s.py, there should be a class "
-                         "with class name that matches %s in lowercase." %
-                         (dataset_filename, target))
+        raise ValueError(f'In {dataset_filename}.py, there should be a class with class name that matches {target} in lowercase.')
 
     return dataset
 
@@ -37,8 +35,7 @@ def create_dataloader(opt, distributed, labels_required, is_inference):
     instance = dataset(opt, is_inference, labels_required)
     phase = 'val' if is_inference else 'training'
     batch_size = opt.val.batch_size if is_inference else opt.train.batch_size
-    print("%s dataset [%s] of size %d was created" %
-          (phase, opt.type, len(instance)))
+    print(f'{phase} dataset {opt.type} of size {len(instance)} was created')
     
     dataloader = torch.utils.data.DataLoader(
         instance,
