@@ -155,6 +155,7 @@ def train(conf, loader, val_loader, model, ema, diffusion, betas, optimizer, sch
             img = img.to(device)
             target_img = target_img.to(device)
             target_pose = target_pose.to(device)
+            # ToDo: Get back to Ozzy about this -> print(f'img shape: {img.shape} | target_img shape: {target_img.shape} | target_pose shape: {target_pose.shape}')
             time_t = torch.randint(  #? Randomly sample a time step from the diffusion schedule for each image in the batch. Shape: [batch_size]
                 0,
                 conf.diffusion.beta_schedule["n_timestep"],
