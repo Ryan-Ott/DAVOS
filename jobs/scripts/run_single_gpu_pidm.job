@@ -4,8 +4,8 @@
 #SBATCH --gres=gpu:1
 #SBATCH --job-name=single_gpu_PIDM
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=3
-#SBATCH --time=15:00:00
+#SBATCH --cpus-per-task=4
+#SBATCH --time=00:30:00
 #SBATCH --mem=59000M
 #SBATCH --output=jobs/outputs/single_gpu_PIDM%A.out
 #SBATCH --error=jobs/outputs/single_gpu_PIDM%A_error.out
@@ -20,14 +20,14 @@ cd modules/PIDM/
 
 echo "Starting..."
 
-conda activate PIDM
+conda activate DAVOS
 python train.py \
-        --exp_name 'single_gpu_pidm_15h' \
+        --exp_name 'testing_final_env' \
         --dataset_path 'dataset/trial_dataset' \
         --n_gpu 1 \
         --sample_algorithm 'ddpm' \
-        --epochs 1000000 \
-        --save_checkpoints_every_epochs 1000 \
-        --save_wandb_images_every_epochs 1000
+        --epochs 1 \
+        --save_checkpoints_every_epochs 1 \
+        --save_wandb_images_every_epochs 1
 
 echo "Finished!"

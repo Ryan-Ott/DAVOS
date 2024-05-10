@@ -4,12 +4,26 @@ Creating high-definition semantic segmentation masks from BLIP Cluster Captions 
 
 ## Getting Started
 
-### Dependencies
-
-ToDo: Specify the exact requirements for this project. For example:
+ToDo: Specify the exact requirements for this project.
 
 1. **System Requirements**: Ensure you have access to a machine with a GPU with CUDA support. This code is tested on NVIDIA A100 GPUs.
-2. **Python Version**: The code is tested with Python 3.7. Ensure you have this version installed.
+2. **Python Version**: The code is tested with Python 3.7
+
+### Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/Ryan-Ott/DAVOS.git
+```
+
+### Step 2: Set Up the Environment
+
+To create the conda environment, navigate to the project directory and run the following command:
+
+```bash
+conda env create -f davos_env.yml
+```
+
+**Note**: For on snellius, you can run the job script at `jobs/scripts/davos_env_setup.job` to handle the environment creation
 
 ### Step 1: Download the Data
 
