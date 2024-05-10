@@ -5,7 +5,8 @@ data:
     preprocess_mode: resize_and_crop
     path: /home/ankanbhunia/Downloads/pidm-demo/dataset/deepfashion
     num_workers: 8
-    sub_path: 256-256
+    sub_path_img: 256-256-img
+    sub_path_pose: 256-256-pose
     resolution: 256
     scale_param: 0.05
     train:

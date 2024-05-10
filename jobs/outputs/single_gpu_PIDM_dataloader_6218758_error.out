@@ -1,0 +1,60 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+wandb: Currently logged in as: rspemmasani (davos42). Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.17.0
+wandb: Run data is saved locally in /gpfs/home2/scur2199/DAVOS/modules/PIDM/wandb/run-20240510_095859-mgjx3ft5
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run single_gpu_pidm_dataloader
+wandb: ⭐️ View project at https://wandb.ai/davos42/person-synthesis
+wandb: 🚀 View run at https://wandb.ai/davos42/person-synthesis/runs/mgjx3ft5
+  0%|          | 0/2 [00:00<?, ?it/s]  0%|          | 0/2 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/gpfs/home2/scur2199/DAVOS/modules/PIDM/train.py", line 344, in <module>
+    main(settings = [args, DiffConf, DataConf], EXP_NAME = args.exp_name)
+  File "/gpfs/home2/scur2199/DAVOS/modules/PIDM/train.py", line 295, in main
+    train(
+  File "/gpfs/home2/scur2199/DAVOS/modules/PIDM/train.py", line 107, in train
+    for batch in tqdm(loader):
+  File "/home/scur2199/.local/lib/python3.9/site-packages/tqdm/std.py", line 1180, in __iter__
+    for obj in iterable:
+  File "/home/scur2199/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 631, in __next__
+    data = self._next_data()
+  File "/home/scur2199/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1346, in _next_data
+    return self._process_data(data)
+  File "/home/scur2199/.local/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1372, in _process_data
+    data.reraise()
+  File "/home/scur2199/.local/lib/python3.9/site-packages/torch/_utils.py", line 705, in reraise
+    raise exception
+PIL.UnidentifiedImageError: Caught UnidentifiedImageError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/home/scur2199/.local/lib/python3.9/site-packages/torch/utils/data/_utils/worker.py", line 308, in _worker_loop
+    data = fetcher.fetch(index)  # type: ignore[possibly-undefined]
+  File "/home/scur2199/.local/lib/python3.9/site-packages/torch/utils/data/_utils/fetch.py", line 51, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/scur2199/.local/lib/python3.9/site-packages/torch/utils/data/_utils/fetch.py", line 51, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/gpfs/home2/scur2199/DAVOS/modules/PIDM/data/fashion_data.py", line 110, in __getitem__
+    target_label_tensor = self.get_label_tensor(path_item['target_label'], param)
+  File "/gpfs/home2/scur2199/DAVOS/modules/PIDM/data/fashion_data.py", line 185, in get_label_tensor
+    img = Image.open(buffer)
+  File "/home/scur2199/.conda/envs/CV2_pose/lib/python3.9/site-packages/PIL/Image.py", line 3339, in open
+    raise UnidentifiedImageError(msg)
+PIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x14a0b182cc20>
+
+wandb: - 0.009 MB of 0.009 MB uploadedwandb: \ 0.009 MB of 0.019 MB uploadedwandb: 🚀 View run single_gpu_pidm_dataloader at: https://wandb.ai/davos42/person-synthesis/runs/mgjx3ft5
+wandb: ⭐️ View project at: https://wandb.ai/davos42/person-synthesis
+wandb: Synced 6 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20240510_095859-mgjx3ft5/logs

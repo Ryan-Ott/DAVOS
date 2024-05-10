@@ -1,0 +1,16 @@
+Finished!
+
+JOB STATISTICS
+==============
+Job ID: 6210048
+Cluster: snellius
+User/Group: scur2199/scur2199
+State: RUNNING
+Nodes: 1
+Cores per node: 9
+CPU Utilized: 00:00:02
+CPU Efficiency: 2.22% of 00:01:30 core-walltime
+Job Wall-clock time: 00:00:10
+Memory Utilized: 1.41 MB
+Memory Efficiency: 0.00% of 57.62 GB
+WARNING: Efficiency statistics may be misleading for RUNNING jobs.

@@ -1,0 +1,191 @@
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+Downloading and Extracting Packages
+jpeg-9e              | 235 KB    |            |   0% jpeg-9e              | 235 KB    | ########## | 100% jpeg-9e              | 235 KB    | ########## | 100% 
+libxcrypt-4.4.36     | 98 KB     |            |   0% libxcrypt-4.4.36     | 98 KB     | ########## | 100% libxcrypt-4.4.36     | 98 KB     | ########## | 100% 
+openssl-3.3.0        | 2.8 MB    |            |   0% openssl-3.3.0        | 2.8 MB    | ########## | 100% openssl-3.3.0        | 2.8 MB    | ########## | 100% 
+typing-extensions-4. | 10 KB     |            |   0% typing-extensions-4. | 10 KB     | ########## | 100% typing-extensions-4. | 10 KB     | ########## | 100% 
+libuuid-2.38.1       | 33 KB     |            |   0% libuuid-2.38.1       | 33 KB     | ########## | 100% libuuid-2.38.1       | 33 KB     | ########## | 100% 
+ncurses-6.4.20240210 | 875 KB    |            |   0% ncurses-6.4.20240210 | 875 KB    | ########## | 100% ncurses-6.4.20240210 | 875 KB    | ########## | 100% 
+libnghttp2-1.58.0    | 617 KB    |            |   0% libnghttp2-1.58.0    | 617 KB    | ########## | 100% libnghttp2-1.58.0    | 617 KB    | ########## | 100% 
+libzopfli-1.0.3      | 164 KB    |            |   0% libzopfli-1.0.3      | 164 KB    | ########## | 100% 
+krb5-1.21.2          | 1.3 MB    |            |   0% krb5-1.21.2          | 1.3 MB    | ########## | 100% krb5-1.21.2          | 1.3 MB    | ########## | 100% 
+async-timeout-4.0.3  | 11 KB     |            |   0% async-timeout-4.0.3  | 11 KB     | ########## | 100% async-timeout-4.0.3  | 11 KB     | ########## | 100% 
+libssh2-1.11.0       | 265 KB    |            |   0% libssh2-1.11.0       | 265 KB    | ########## | 100% libssh2-1.11.0       | 265 KB    | ########## | 100% 
+ca-certificates-2024 | 152 KB    |            |   0% ca-certificates-2024 | 152 KB    | ########## | 100% ca-certificates-2024 | 152 KB    | ########## | 100% 
+locket-1.0.0         | 8 KB      |            |   0% locket-1.0.0         | 8 KB      | ########## | 100% 
+cachetools-4.2.4     | 12 KB     |            |   0% cachetools-4.2.4     | 12 KB     | ########## | 100% 
+multidict-6.0.5      | 56 KB     |            |   0% multidict-6.0.5      | 56 KB     | ########## | 100% multidict-6.0.5      | 56 KB     | ########## | 100% 
+brotli-1.0.9         | 389 KB    |            |   0% brotli-1.0.9         | 389 KB    | ########## | 100% brotli-1.0.9         | 389 KB    | ########## | 100% 
+libaec-1.1.3         | 35 KB     |            |   0% libaec-1.1.3         | 35 KB     | ########## | 100% libaec-1.1.3         | 35 KB     | ########## | 100% 
+brotli-python-1.0.9  | 320 KB    |            |   0% brotli-python-1.0.9  | 320 KB    | ########## | 100% brotli-python-1.0.9  | 320 KB    | ########## | 100% 
+libgomp-13.2.0       | 410 KB    |            |   0% libgomp-13.2.0       | 410 KB    | ########## | 100% libgomp-13.2.0       | 410 KB    | ########## | 100% 
+tqdm-4.62.3          | 80 KB     |            |   0% tqdm-4.62.3          | 80 KB     | ########## | 100% 
+lcms2-2.12           | 443 KB    |            |   0% lcms2-2.12           | 443 KB    | ########## | 100% lcms2-2.12           | 443 KB    | ########## | 100% 
+blinker-1.8.1        | 15 KB     |            |   0% blinker-1.8.1        | 15 KB     | ########## | 100% blinker-1.8.1        | 15 KB     | ########## | 100% 
+libwebp-base-1.4.0   | 429 KB    |            |   0% libwebp-base-1.4.0   | 429 KB    | ########## | 100% libwebp-base-1.4.0   | 429 KB    | ########## | 100% 
+_openmp_mutex-4.5    | 23 KB     |            |   0% _openmp_mutex-4.5    | 23 KB     | ########## | 100% 
+aiosignal-1.3.1      | 12 KB     |            |   0% aiosignal-1.3.1      | 12 KB     | ########## | 100% 
+zipp-3.17.0          | 19 KB     |            |   0% zipp-3.17.0          | 19 KB     | ########## | 100% zipp-3.17.0          | 19 KB     | ########## | 100% 
+markdown-3.6         | 76 KB     |            |   0% markdown-3.6         | 76 KB     | ########## | 100% markdown-3.6         | 76 KB     | ########## | 100% 
+zlib-ng-2.0.7        | 92 KB     |            |   0% zlib-ng-2.0.7        | 92 KB     | ########## | 100% zlib-ng-2.0.7        | 92 KB     | ########## | 100% 
+networkx-3.2.1       | 1.1 MB    |            |   0% networkx-3.2.1       | 1.1 MB    | ########## | 100% networkx-3.2.1       | 1.1 MB    | ########## | 100% 
+cryptography-42.0.5  | 1.9 MB    |            |   0% cryptography-42.0.5  | 1.9 MB    | ########## | 100% cryptography-42.0.5  | 1.9 MB    | ########## | 100% 
+bzip2-1.0.8          | 248 KB    |            |   0% bzip2-1.0.8          | 248 KB    | ########## | 100% bzip2-1.0.8          | 248 KB    | ########## | 100% 
+olefile-0.47         | 38 KB     |            |   0% olefile-0.47         | 38 KB     | ########## | 100% olefile-0.47         | 38 KB     | ########## | 100% 
+giflib-5.2.2         | 75 KB     |            |   0% giflib-5.2.2         | 75 KB     | ########## | 100% giflib-5.2.2         | 75 KB     | ########## | 100% 
+libblas-3.9.0        | 14 KB     |            |   0% libblas-3.9.0        | 14 KB     | ########## | 100% libblas-3.9.0        | 14 KB     | ########## | 100% 
+packaging-24.0       | 49 KB     |            |   0% packaging-24.0       | 49 KB     | ########## | 100% packaging-24.0       | 49 KB     | ########## | 100% 
+contourpy-1.2.1      | 236 KB    |            |   0% contourpy-1.2.1      | 236 KB    | ########## | 100% contourpy-1.2.1      | 236 KB    | ########## | 100% 
+libabseil-20240116.2 | 1.2 MB    |            |   0% libabseil-20240116.2 | 1.2 MB    | ########## | 100% libabseil-20240116.2 | 1.2 MB    | ########## | 100% 
+dask-core-2024.5.0   | 861 KB    |            |   0% dask-core-2024.5.0   | 861 KB    | ########## | 100% dask-core-2024.5.0   | 861 KB    | ########## | 100% 
+zstd-1.5.6           | 542 KB    |            |   0% zstd-1.5.6           | 542 KB    | ########## | 100% zstd-1.5.6           | 542 KB    | ########## | 100% 
+pillow-8.3.2         | 701 KB    |            |   0% pillow-8.3.2         | 701 KB    | 2          |   2% pillow-8.3.2         | 701 KB    | ########## | 100% pillow-8.3.2         | 701 KB    | ########## | 100% 
+google-auth-oauthlib | 19 KB     |            |   0% google-auth-oauthlib | 19 KB     | ########## | 100% 
+libgcc-ng-13.2.0     | 759 KB    |            |   0% libgcc-ng-13.2.0     | 759 KB    | ########## | 100% libgcc-ng-13.2.0     | 759 KB    | ########## | 100% 
+charset-normalizer-3 | 46 KB     |            |   0% charset-normalizer-3 | 46 KB     | ########## | 100% charset-normalizer-3 | 46 KB     | ########## | 100% 
+smmap-5.0.0          | 22 KB     |            |   0% smmap-5.0.0          | 22 KB     | ########## | 100% 
+requests-oauthlib-2. | 25 KB     |            |   0% requests-oauthlib-2. | 25 KB     | ########## | 100% requests-oauthlib-2. | 25 KB     | ########## | 100% 
+grpcio-1.62.2        | 991 KB    |            |   0% grpcio-1.62.2        | 991 KB    | ########## | 100% grpcio-1.62.2        | 991 KB    | ########## | 100% 
+frozenlist-1.4.1     | 59 KB     |            |   0% frozenlist-1.4.1     | 59 KB     | ########## | 100% frozenlist-1.4.1     | 59 KB     | ########## | 100% 
+yarl-1.9.4           | 113 KB    |            |   0% yarl-1.9.4           | 113 KB    | ########## | 100% yarl-1.9.4           | 113 KB    | ########## | 100% 
+libtiff-4.3.0        | 635 KB    |            |   0% libtiff-4.3.0        | 635 KB    | ########## | 100% libtiff-4.3.0        | 635 KB    | ########## | 100% 
+idna-3.7             | 51 KB     |            |   0% idna-3.7             | 51 KB     | ########## | 100% idna-3.7             | 51 KB     | ########## | 100% 
+_libgcc_mutex-0.1    | 3 KB      |            |   0% _libgcc_mutex-0.1    | 3 KB      | ########## | 100% 
+libre2-11-2023.09.01 | 227 KB    |            |   0% libre2-11-2023.09.01 | 227 KB    | ########## | 100% libre2-11-2023.09.01 | 227 KB    | ########## | 100% 
+tensorboard-data-ser | 3.6 MB    |            |   0% tensorboard-data-ser | 3.6 MB    | ########## | 100% tensorboard-data-ser | 3.6 MB    | ########## | 100% 
+importlib-metadata-7 | 26 KB     |            |   0% importlib-metadata-7 | 26 KB     | ########## | 100% importlib-metadata-7 | 26 KB     | ########## | 100% 
+scipy-1.13.0         | 15.8 MB   |            |   0% scipy-1.13.0         | 15.8 MB   | ########4  |  85% scipy-1.13.0         | 15.8 MB   | ########## | 100% 
+kiwisolver-1.4.5     | 72 KB     |            |   0% kiwisolver-1.4.5     | 72 KB     | ########## | 100% kiwisolver-1.4.5     | 72 KB     | ########## | 100% 
+unicodedata2-15.1.0  | 365 KB    |            |   0% unicodedata2-15.1.0  | 365 KB    | ########## | 100% unicodedata2-15.1.0  | 365 KB    | ########## | 100% 
+libopenblas-0.3.27   | 5.3 MB    |            |   0% libopenblas-0.3.27   | 5.3 MB    | ######3    |  64% libopenblas-0.3.27   | 5.3 MB    | ########## | 100% 
+charls-2.3.4         | 149 KB    |            |   0% charls-2.3.4         | 149 KB    | ########## | 100% 
+libcurl-8.7.1        | 389 KB    |            |   0% libcurl-8.7.1        | 389 KB    | ########## | 100% libcurl-8.7.1        | 389 KB    | ########## | 100% 
+certifi-2024.2.2     | 157 KB    |            |   0% certifi-2024.2.2     | 157 KB    | ########## | 100% certifi-2024.2.2     | 157 KB    | ########## | 100% 
+click-8.1.7          | 82 KB     |            |   0% click-8.1.7          | 82 KB     | ########## | 100% click-8.1.7          | 82 KB     | ########## | 100% 
+colorama-0.4.6       | 25 KB     |            |   0% colorama-0.4.6       | 25 KB     | ########## | 100% 
+aom-3.5.0            | 2.7 MB    |            |   0% aom-3.5.0            | 2.7 MB    | ########## | 100% aom-3.5.0            | 2.7 MB    | ########## | 100% 
+oauthlib-3.2.2       | 90 KB     |            |   0% oauthlib-3.2.2       | 90 KB     | ########## | 100% 
+imagecodecs-2022.2.2 | 2.6 MB    |            |   0% imagecodecs-2022.2.2 | 2.6 MB    |            |   1% imagecodecs-2022.2.2 | 2.6 MB    | ########## | 100% imagecodecs-2022.2.2 | 2.6 MB    | ########## | 100% 
+libprotobuf-4.25.3   | 2.7 MB    |            |   0% libprotobuf-4.25.3   | 2.7 MB    | ########## | 100% libprotobuf-4.25.3   | 2.7 MB    | ########## | 100% 
+libavif-0.10.1       | 96 KB     |            |   0% libavif-0.10.1       | 96 KB     | #6         |  17% libavif-0.10.1       | 96 KB     | ########## | 100% 
+re2-2023.09.01       | 26 KB     |            |   0% re2-2023.09.01       | 26 KB     | ########## | 100% re2-2023.09.01       | 26 KB     | ########## | 100% 
+blosc-1.21.5         | 48 KB     |            |   0% blosc-1.21.5         | 48 KB     | ########## | 100% blosc-1.21.5         | 48 KB     | ########## | 100% 
+scikit-image-0.17.2  | 11.2 MB   |            |   0% scikit-image-0.17.2  | 11.2 MB   |            |   0% scikit-image-0.17.2  | 11.2 MB   | #####      |  51% scikit-image-0.17.2  | 11.2 MB   | ########## | 100% scikit-image-0.17.2  | 11.2 MB   | ########## | 100% 
+libcblas-3.9.0       | 14 KB     |            |   0% libcblas-3.9.0       | 14 KB     | ########## | 100% libcblas-3.9.0       | 14 KB     | ########## | 100% 
+pyasn1-modules-0.4.0 | 93 KB     |            |   0% pyasn1-modules-0.4.0 | 93 KB     | ########## | 100% pyasn1-modules-0.4.0 | 93 KB     | ########## | 100% 
+pathtools-0.1.2      | 8 KB      |            |   0% pathtools-0.1.2      | 8 KB      | ########## | 100% 
+six-1.16.0           | 14 KB     |            |   0% six-1.16.0           | 14 KB     | ########## | 100% 
+requests-2.31.0      | 55 KB     |            |   0% requests-2.31.0      | 55 KB     | ########## | 100% requests-2.31.0      | 55 KB     | ########## | 100% 
+python_abi-3.9       | 6 KB      |            |   0% python_abi-3.9       | 6 KB      | ########## | 100% python_abi-3.9       | 6 KB      | ########## | 100% 
+markupsafe-2.1.5     | 24 KB     |            |   0% markupsafe-2.1.5     | 24 KB     | ########## | 100% markupsafe-2.1.5     | 24 KB     | ########## | 100% 
+attrs-23.2.0         | 53 KB     |            |   0% attrs-23.2.0         | 53 KB     | ########## | 100% attrs-23.2.0         | 53 KB     | ########## | 100% 
+setproctitle-1.3.3   | 19 KB     |            |   0% setproctitle-1.3.3   | 19 KB     | ########## | 100% setproctitle-1.3.3   | 19 KB     | ########## | 100% 
+wandb-0.16.5         | 1.4 MB    |            |   0% wandb-0.16.5         | 1.4 MB    | ########## | 100% wandb-0.16.5         | 1.4 MB    | ########## | 100% 
+libgfortran-ng-13.2. | 24 KB     |            |   0% libgfortran-ng-13.2. | 24 KB     | ########## | 100% libgfortran-ng-13.2. | 24 KB     | ########## | 100% 
+lz4-c-1.9.4          | 140 KB    |            |   0% lz4-c-1.9.4          | 140 KB    | ########## | 100% lz4-c-1.9.4          | 140 KB    | ########## | 100% 
+importlib-resources- | 9 KB      |            |   0% importlib-resources- | 9 KB      | ########## | 100% importlib-resources- | 9 KB      | ########## | 100% 
+protobuf-4.25.3      | 321 KB    |            |   0% protobuf-4.25.3      | 321 KB    | ########## | 100% protobuf-4.25.3      | 321 KB    | ########## | 100% 
+ld_impl_linux-64-2.4 | 697 KB    |            |   0% ld_impl_linux-64-2.4 | 697 KB    | ########## | 100% ld_impl_linux-64-2.4 | 697 KB    | ########## | 100% 
+libbrotlienc-1.0.9   | 259 KB    |            |   0% libbrotlienc-1.0.9   | 259 KB    | ########## | 100% libbrotlienc-1.0.9   | 259 KB    | ########## | 100% 
+cffi-1.16.0          | 234 KB    |            |   0% cffi-1.16.0          | 234 KB    | ########## | 100% cffi-1.16.0          | 234 KB    | ########## | 100% 
+docker-pycreds-0.4.0 | 11 KB     |            |   0% docker-pycreds-0.4.0 | 11 KB     | ########## | 100% 
+setuptools-69.5.1    | 490 KB    |            |   0% setuptools-69.5.1    | 490 KB    | ########## | 100% setuptools-69.5.1    | 490 KB    | ########## | 100% 
+libedit-3.1.20191231 | 121 KB    |            |   0% libedit-3.1.20191231 | 121 KB    | ########## | 100% 
+pywavelets-1.4.1     | 3.5 MB    |            |   0% pywavelets-1.4.1     | 3.5 MB    | ########## | 100% pywavelets-1.4.1     | 3.5 MB    | ########## | 100% 
+pysocks-1.7.1        | 19 KB     |            |   0% pysocks-1.7.1        | 19 KB     | ########## | 100% 
+cytoolz-0.12.3       | 361 KB    |            |   0% cytoolz-0.12.3       | 361 KB    | ########## | 100% cytoolz-0.12.3       | 361 KB    | ########## | 100% 
+yaml-0.2.5           | 87 KB     |            |   0% yaml-0.2.5           | 87 KB     | ########## | 100% 
+freetype-2.12.1      | 620 KB    |            |   0% freetype-2.12.1      | 620 KB    | ########## | 100% freetype-2.12.1      | 620 KB    | ########## | 100% 
+pip-24.0             | 1.3 MB    |            |   0% pip-24.0             | 1.3 MB    | ########## | 100% pip-24.0             | 1.3 MB    | ########## | 100% 
+pydantic-1.10.14     | 2.1 MB    |            |   0% pydantic-1.10.14     | 2.1 MB    | ########## | 100% pydantic-1.10.14     | 2.1 MB    | ########## | 100% 
+readline-8.2         | 275 KB    |            |   0% readline-8.2         | 275 KB    | ########## | 100% readline-8.2         | 275 KB    | ########## | 100% 
+libnsl-2.0.1         | 33 KB     |            |   0% libnsl-2.0.1         | 33 KB     | ########## | 100% libnsl-2.0.1         | 33 KB     | ########## | 100% 
+xz-5.2.6             | 409 KB    |            |   0% xz-5.2.6             | 409 KB    | ########## | 100% xz-5.2.6             | 409 KB    | ########## | 100% 
+tensorboard-plugin-w | 668 KB    |            |   0% tensorboard-plugin-w | 668 KB    | ########## | 100% tensorboard-plugin-w | 668 KB    | ########## | 100% 
+zfp-0.5.5            | 190 KB    |            |   0% zfp-0.5.5            | 190 KB    | ########## | 100% 
+tifffile-2022.10.10  | 160 KB    |            |   0% tifffile-2022.10.10  | 160 KB    | ########## | 100% 
+libgfortran5-13.2.0  | 1.4 MB    |            |   0% libgfortran5-13.2.0  | 1.4 MB    | ########## | 100% libgfortran5-13.2.0  | 1.4 MB    | ########## | 100% 
+aiohttp-3.9.5        | 677 KB    |            |   0% aiohttp-3.9.5        | 677 KB    | ########## | 100% aiohttp-3.9.5        | 677 KB    | ########## | 100% 
+brunsli-0.1          | 200 KB    |            |   0% brunsli-0.1          | 200 KB    | ########## | 100% 
+wheel-0.43.0         | 57 KB     |            |   0% wheel-0.43.0         | 57 KB     | ########## | 100% wheel-0.43.0         | 57 KB     | ########## | 100% 
+jxrlib-1.1           | 234 KB    |            |   0% jxrlib-1.1           | 234 KB    | ########## | 100% jxrlib-1.1           | 234 KB    | ########## | 100% 
+fonttools-4.51.0     | 2.2 MB    |            |   0% fonttools-4.51.0     | 2.2 MB    | ########## | 100% fonttools-4.51.0     | 2.2 MB    | ########## | 100% 
+libbrotlicommon-1.0. | 69 KB     |            |   0% libbrotlicommon-1.0. | 69 KB     | ########## | 100% libbrotlicommon-1.0. | 69 KB     | ########## | 100% 
+libsqlite-3.45.3     | 840 KB    |            |   0% libsqlite-3.45.3     | 840 KB    | ########## | 100% libsqlite-3.45.3     | 840 KB    | ########## | 100% 
+libzlib-1.2.13       | 60 KB     |            |   0% libzlib-1.2.13       | 60 KB     | ########## | 100% libzlib-1.2.13       | 60 KB     | ########## | 100% 
+cycler-0.12.1        | 13 KB     |            |   0% cycler-0.12.1        | 13 KB     | ########## | 100% cycler-0.12.1        | 13 KB     | ########## | 100% 
+dav1d-1.0.0          | 823 KB    |            |   0% dav1d-1.0.0          | 823 KB    | ########## | 100% dav1d-1.0.0          | 823 KB    | ########## | 100% 
+pyopenssl-24.0.0     | 124 KB    |            |   0% pyopenssl-24.0.0     | 124 KB    | ########## | 100% pyopenssl-24.0.0     | 124 KB    | ########## | 100% 
+libffi-3.4.2         | 57 KB     |            |   0% libffi-3.4.2         | 57 KB     | ########## | 100% 
+keyutils-1.6.1       | 115 KB    |            |   0% keyutils-1.6.1       | 115 KB    | ########## | 100% 
+appdirs-1.4.4        | 13 KB     |            |   0% appdirs-1.4.4        | 13 KB     | ########## | 100% 
+rsa-4.9              | 29 KB     |            |   0% rsa-4.9              | 29 KB     | ########## | 100% 
+sentry-sdk-2.0.1     | 171 KB    |            |   0% sentry-sdk-2.0.1     | 171 KB    | ########## | 100% sentry-sdk-2.0.1     | 171 KB    | ########## | 100% 
+pyasn1-0.6.0         | 63 KB     |            |   0% pyasn1-0.6.0         | 63 KB     | ########## | 100% pyasn1-0.6.0         | 63 KB     | ########## | 100% 
+pyu2f-0.1.5          | 31 KB     |            |   0% pyu2f-0.1.5          | 31 KB     | ########## | 100% 
+lerc-3.0             | 216 KB    |            |   0% lerc-3.0             | 216 KB    | ########## | 100% 
+importlib_metadata-7 | 9 KB      |            |   0% importlib_metadata-7 | 9 KB      | ########## | 100% importlib_metadata-7 | 9 KB      | ########## | 100% 
+libev-4.33           | 110 KB    |            |   0% libev-4.33           | 110 KB    | ########## | 100% libev-4.33           | 110 KB    | ########## | 100% 
+tzdata-2024a         | 117 KB    |            |   0% tzdata-2024a         | 117 KB    | ########## | 100% tzdata-2024a         | 117 KB    | ########## | 100% 
+zlib-1.2.13          | 91 KB     |            |   0% zlib-1.2.13          | 91 KB     | ########## | 100% zlib-1.2.13          | 91 KB     | ########## | 100% 
+pyjwt-2.8.0          | 24 KB     |            |   0% pyjwt-2.8.0          | 24 KB     | ########## | 100% pyjwt-2.8.0          | 24 KB     | ########## | 100% 
+tensorboard-2.6.0    | 5.0 MB    |            |   0% tensorboard-2.6.0    | 5.0 MB    | #########1 |  91% tensorboard-2.6.0    | 5.0 MB    | ########## | 100% 
+libdeflate-1.10      | 77 KB     |            |   0% libdeflate-1.10      | 77 KB     | ########## | 100% 
+libgrpc-1.62.2       | 7.0 MB    |            |   0% libgrpc-1.62.2       | 7.0 MB    | #####9     |  60% libgrpc-1.62.2       | 7.0 MB    | ########## | 100% 
+c-ares-1.28.1        | 165 KB    |            |   0% c-ares-1.28.1        | 165 KB    | ########## | 100% c-ares-1.28.1        | 165 KB    | ########## | 100% 
+werkzeug-3.0.2       | 237 KB    |            |   0% werkzeug-3.0.2       | 237 KB    | ########## | 100% werkzeug-3.0.2       | 237 KB    | ########## | 100% 
+openjpeg-2.5.0       | 515 KB    |            |   0% openjpeg-2.5.0       | 515 KB    | ########## | 100% openjpeg-2.5.0       | 515 KB    | ########## | 100% 
+pycparser-2.22       | 103 KB    |            |   0% pycparser-2.22       | 103 KB    | ########## | 100% pycparser-2.22       | 103 KB    | ########## | 100% 
+libbrotlidec-1.0.9   | 32 KB     |            |   0% libbrotlidec-1.0.9   | 32 KB     | ########## | 100% libbrotlidec-1.0.9   | 32 KB     | ########## | 100% 
+google-auth-1.35.0   | 81 KB     |            |   0% google-auth-1.35.0   | 81 KB     | ########## | 100% 
+numpy-1.26.4         | 6.7 MB    |            |   0% numpy-1.26.4         | 6.7 MB    | ########6  |  87% numpy-1.26.4         | 6.7 MB    | ########## | 100% 
+liblapack-3.9.0      | 14 KB     |            |   0% liblapack-3.9.0      | 14 KB     | ########## | 100% liblapack-3.9.0      | 14 KB     | ########## | 100% 
+typing_extensions-4. | 37 KB     |            |   0% typing_extensions-4. | 37 KB     | ########## | 100% typing_extensions-4. | 37 KB     | ########## | 100% 
+imageio-2.34.1       | 284 KB    |            |   0% imageio-2.34.1       | 284 KB    | ########## | 100% imageio-2.34.1       | 284 KB    | ########## | 100% 
+cloudpickle-3.0.0    | 24 KB     |            |   0% cloudpickle-3.0.0    | 24 KB     | ########## | 100% cloudpickle-3.0.0    | 24 KB     | ########## | 100% 
+urllib3-2.2.1        | 92 KB     |            |   0% urllib3-2.2.1        | 92 KB     | ########## | 100% urllib3-2.2.1        | 92 KB     | ########## | 100% 
+snappy-1.1.10        | 39 KB     |            |   0% snappy-1.1.10        | 39 KB     | ########## | 100% snappy-1.1.10        | 39 KB     | ########## | 100% 
+fsspec-2024.3.1      | 126 KB    |            |   0% fsspec-2024.3.1      | 126 KB    | ########## | 100% fsspec-2024.3.1      | 126 KB    | ########## | 100% 
+pyparsing-3.1.2      | 87 KB     |            |   0% pyparsing-3.1.2      | 87 KB     | ########## | 100% pyparsing-3.1.2      | 87 KB     | ########## | 100% 
+cfitsio-4.1.0        | 1.3 MB    |            |   0% cfitsio-4.1.0        | 1.3 MB    | ########## | 100% cfitsio-4.1.0        | 1.3 MB    | ########## | 100% 
+gitpython-3.1.43     | 153 KB    |            |   0% gitpython-3.1.43     | 153 KB    | ########## | 100% gitpython-3.1.43     | 153 KB    | ########## | 100% 
+pyyaml-5.4.1         | 184 KB    |            |   0% pyyaml-5.4.1         | 184 KB    | ########## | 100% 
+partd-1.4.1          | 20 KB     |            |   0% partd-1.4.1          | 20 KB     | ########## | 100% partd-1.4.1          | 20 KB     | ########## | 100% 
+tk-8.6.13            | 3.2 MB    |            |   0% tk-8.6.13            | 3.2 MB    | ########## | 100% tk-8.6.13            | 3.2 MB    | ########## | 100% 
+libstdcxx-ng-13.2.0  | 3.7 MB    |            |   0% libstdcxx-ng-13.2.0  | 3.7 MB    | ########## | 100% libstdcxx-ng-13.2.0  | 3.7 MB    | ########## | 100% 
+munkres-1.1.4        | 12 KB     |            |   0% munkres-1.1.4        | 12 KB     | ########## | 100% 
+libpng-1.6.43        | 281 KB    |            |   0% libpng-1.6.43        | 281 KB    | ########## | 100% libpng-1.6.43        | 281 KB    | ########## | 100% 
+psutil-5.9.8         | 355 KB    |            |   0% psutil-5.9.8         | 355 KB    | ########## | 100% psutil-5.9.8         | 355 KB    | ########## | 100% 
+python-dateutil-2.9. | 218 KB    |            |   0% python-dateutil-2.9. | 218 KB    | ########## | 100% python-dateutil-2.9. | 218 KB    | ########## | 100% 
+matplotlib-base-3.8. | 6.4 MB    |            |   0% matplotlib-base-3.8. | 6.4 MB    | #######6   |  76% matplotlib-base-3.8. | 6.4 MB    | ########## | 100% 
+importlib_resources- | 32 KB     |            |   0% importlib_resources- | 32 KB     | ########## | 100% importlib_resources- | 32 KB     | ########## | 100% 
+toolz-0.12.1         | 51 KB     |            |   0% toolz-0.12.1         | 51 KB     | ########## | 100% toolz-0.12.1         | 51 KB     | ########## | 100% 
+c-blosc2-2.12.0      | 326 KB    |            |   0% c-blosc2-2.12.0      | 326 KB    | ########## | 100% c-blosc2-2.12.0      | 326 KB    | ########## | 100% 
+gitdb-4.0.11         | 52 KB     |            |   0% gitdb-4.0.11         | 52 KB     | ########## | 100% gitdb-4.0.11         | 52 KB     | ########## | 100% 
+absl-py-2.1.0        | 105 KB    |            |   0% absl-py-2.1.0        | 105 KB    | ########## | 100% absl-py-2.1.0        | 105 KB    | ########## | 100% 
+python-3.9.19        | 22.7 MB   |            |   0% python-3.9.19        | 22.7 MB   | #6         |  17% python-3.9.19        | 22.7 MB   | ###8       |  38% python-3.9.19        | 22.7 MB   | ######6    |  66% python-3.9.19        | 22.7 MB   | ########9  |  90% python-3.9.19        | 22.7 MB   | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Installing pip dependencies: ...working... Ran pip subprocess with arguments:
+['/home/scur2199/.conda/envs/CV2_pose/bin/python', '-m', 'pip', 'install', '-U', '-r', '/gpfs/home2/scur2199/DAVOS/modules/PIDM/condaenv.s0tev0x3.requirements.txt']
+Pip subprocess output:
+
+failed
+Finished!
+
+JOB STATISTICS
+==============
+Job ID: 6152029
+Cluster: snellius
+User/Group: scur2199/scur2199
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 9
+CPU Utilized: 02:27:42
+CPU Efficiency: 11.05% of 22:16:21 core-walltime
+Job Wall-clock time: 02:28:29
+Memory Utilized: 29.95 GB
+Memory Efficiency: 51.99% of 57.62 GB

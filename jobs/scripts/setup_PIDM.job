@@ -19,6 +19,6 @@ conda create -n PIDM python=3.7
 conda activate PIDM
 conda install pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch -c nvidia
 
-pip install -r /modules/PIDM/requirements.txt
+pip install -r /home/scur2199/DAVOS/modules/PIDM/requirements.txt
 
 echo "Finished!"

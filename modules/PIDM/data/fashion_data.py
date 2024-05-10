@@ -20,34 +20,16 @@ class Dataset(Dataset):
     def __init__(self, opt, is_inference, labels_required = False):
         self.root = opt.path
         self.semantic_path = self.root
-        path = os.path.join(self.root, str(opt.sub_path))
-        self.path = path
+        img_path = os.path.join(self.root, str(opt.sub_path_img))
+        pose_path = os.path.join(self.root, str(opt.sub_path_pose))
+        self.img_path = img_path
+        self.pose_path = pose_path
         self.labels_required = labels_required
-
-        # self.env = lmdb.open(
-        #     path,
-        #     max_readers=32,
-        #     readonly=True,
-        #     lock=False,
-        #     readahead=False,
-        #     meminit=False,
-        # )
-
-        # if not self.env:
-        #     raise IOError('Cannot open lmdb dataset', path)
-
         self.file_path = 'train_pairs.txt' if not is_inference else 'test_pairs.txt'
         self.data = self.get_paths(self.root, self.file_path)
         self.is_inference = is_inference
         self.preprocess_mode = opt.preprocess_mode
         self.scale_param = opt.scale_param if not is_inference else 0
-        self.limbSeq = [[2, 3], [2, 6], [3, 4], [4, 5], [6, 7], [7, 8], [2, 9], [9, 10], \
-                [10, 11], [2, 12], [12, 13], [13, 14], [2, 1], [1, 15], [15, 17], \
-                [1, 16], [16, 18], [3, 17], [6, 18]]
-
-        self.colors = [[255, 0, 0], [255, 85, 0], [255, 170, 0], [255, 255, 0], [170, 255, 0], [85, 255, 0], [0, 255, 0], \
-                [0, 255, 85], [0, 255, 170], [0, 255, 255], [0, 170, 255], [0, 85, 255], [0, 0, 255], [85, 0, 255], \
-                [170, 0, 255], [255, 0, 255], [255, 0, 170], [255, 0, 85]]
 
     def __len__(self):
         return len(self.data)
@@ -62,24 +44,34 @@ class Dataset(Dataset):
         for item in lines:
             dict_item={}
             item = item.strip().split(',')
-            dict_item['source_image'] = [path.replace('.jpg', '.png') for path in item[1:]]
-            dict_item['source_label'] = [os.path.join(self.semantic_path, self.img_to_label(path)) for path in dict_item['source_image']]
+            dict_item['source_image'] = item[1].replace('.jpg', '.png')
+            dict_item['source_label'] = self.img_to_label(dict_item['source_image']).replace('.jpg', '.png')
             dict_item['target_image'] = item[0].replace('.jpg', '.png')
-            dict_item['target_label'] = os.path.join(self.semantic_path, self.img_to_label(dict_item['target_image']))
+            dict_item['target_label'] = self.img_to_label(dict_item['target_image']).replace('.jpg', '.png')
             image_paths.append(dict_item)
         return image_paths
 
     def open_lmdb(self):
 
-        self.env = lmdb.open(
-            self.path,
+        self.img_env = lmdb.open(
+            self.img_path,
             max_readers=32,
             readonly=True,
             lock=False,
             readahead=False,
             meminit=False,
         )
-        self.txn = self.env.begin(buffers=True)
+        self.img_txn = self.img_env.begin(buffers=True)
+
+        self.pose_env = lmdb.open(
+            self.pose_path,
+            max_readers=32,
+            readonly=True,
+            lock=False,
+            readahead=False,
+            meminit=False,
+        )
+        self.pose_txn = self.pose_env.begin(buffers=True)
 
     def __getitem__(self, index):
 
@@ -88,21 +80,20 @@ class Dataset(Dataset):
 
 
         path_item = self.data[index]
-        i = np.random.choice(list(range(0, len(path_item['source_image']))))
-        source_image_path = path_item['source_image'][i]
-        source_label_path = path_item['source_label'][i]
-
+        # i = np.random.choice(list(range(0, len(path_item['source_image']))))
+        # source_image_path = path_item['source_image'][i]
+        # source_label_path = path_item['source_label'][i]
         target_image_tensor, param = self.get_image_tensor(path_item['target_image'])
 
         if self.labels_required:
-            target_label_tensor, target_face_center = self.get_label_tensor(path_item['target_label'], target_image_tensor, param)
+            target_label_tensor = self.get_label_tensor(path_item['target_label'], param)
         
-        ref_tensor, param = self.get_image_tensor(source_image_path)
+        ref_tensor, param = self.get_image_tensor(path_item['source_image'])
 
         if self.labels_required:
-            label_ref_tensor, ref_face_center = self.get_label_tensor(source_label_path, ref_tensor, param)
+            label_ref_tensor = self.get_label_tensor(path_item['source_label'], param)
         
-        image_path = self.get_image_path(source_image_path, path_item['target_image'])
+        image_path = self.get_image_path(path_item['source_image'], path_item['target_image'])
 
         if not self.is_inference:
 
@@ -121,11 +112,9 @@ class Dataset(Dataset):
 
             input_dict = {'target_skeleton': target_label_tensor,
                         'target_image': target_image_tensor,
-                        'target_face_center': target_face_center,
 
                         'source_image': ref_tensor,
                         'source_skeleton': label_ref_tensor,
-                        'source_face_center': ref_face_center,
 
                         'path': image_path,
                         }
@@ -154,10 +143,11 @@ class Dataset(Dataset):
         return path_names
 
     def img_to_label(self, path):
-        return path.replace('img/', 'pose/').replace('.png', '.txt')
+        return path.replace('img/', 'pose/')
 
     def get_image_tensor(self, path):
-        with self.env.begin(write=False) as txn:
+        print('image_path', path)
+        with self.img_env.begin(write=False) as txn:
             key = f'{path}'.encode('utf-8')
             img_bytes = txn.get(key) 
         buffer = BytesIO(img_bytes)
@@ -167,55 +157,65 @@ class Dataset(Dataset):
         img = trans(img)
         return img, param
 
-    def get_label_tensor(self, path, img, param):
-        canvas = np.zeros((img.shape[1], img.shape[2], 3)).astype(np.uint8)
-        keypoint = np.loadtxt(path)
-        keypoint = self.trans_keypoins(keypoint, param, img.shape[1:])
-        stickwidth = 4
-        for i in range(18):
-            x, y = keypoint[i, 0:2]
-            if x == -1 or y == -1:
-                continue
-            cv2.circle(canvas, (int(x), int(y)), 4, self.colors[i], thickness=-1)
-        joints = []
-        for i in range(17):
-            Y = keypoint[np.array(self.limbSeq[i])-1, 0]
-            X = keypoint[np.array(self.limbSeq[i])-1, 1]            
-            cur_canvas = canvas.copy()
-            if -1 in Y or -1 in X:
-                joints.append(np.zeros_like(cur_canvas[:, :, 0]))
-                continue
-            mX = np.mean(X)
-            mY = np.mean(Y)
-            length = ((X[0] - X[1]) ** 2 + (Y[0] - Y[1]) ** 2) ** 0.5
-            angle = math.degrees(math.atan2(X[0] - X[1], Y[0] - Y[1]))
-            polygon = cv2.ellipse2Poly((int(mY), int(mX)), (int(length / 2), stickwidth), int(angle), 0, 360, 1)
-            cv2.fillConvexPoly(cur_canvas, polygon, self.colors[i])
-            canvas = cv2.addWeighted(canvas, 0.4, cur_canvas, 0.6, 0)
+    def get_label_tensor(self, path, param):
+        print("label path", path)
+        with self.pose_env.begin(write=False) as txn:
+            key = f'{path}'.encode('utf-8')
+            img_bytes = txn.get(key) 
+        buffer = BytesIO(img_bytes)
+        img = Image.open(buffer)
+        trans = get_transform(param, normalize=True, toTensor=True)
+        img = trans(img)
+        return img
+        # '''change this to resize the cluster segmentation stuff'''
+        # canvas = np.zeros((img.shape[1], img.shape[2], 3)).astype(np.uint8)
+        # keypoint = np.loadtxt(path)
+        # keypoint = self.trans_keypoins(keypoint, param, img.shape[1:])
+        # stickwidth = 4
+        # for i in range(18):
+        #     x, y = keypoint[i, 0:2]
+        #     if x == -1 or y == -1:
+        #         continue
+        #     cv2.circle(canvas, (int(x), int(y)), 4, self.colors[i], thickness=-1)
+        # joints = []
+        # for i in range(17):
+        #     Y = keypoint[np.array(self.limbSeq[i])-1, 0]
+        #     X = keypoint[np.array(self.limbSeq[i])-1, 1]            
+        #     cur_canvas = canvas.copy()
+        #     if -1 in Y or -1 in X:
+        #         joints.append(np.zeros_like(cur_canvas[:, :, 0]))
+        #         continue
+        #     mX = np.mean(X)
+        #     mY = np.mean(Y)
+        #     length = ((X[0] - X[1]) ** 2 + (Y[0] - Y[1]) ** 2) ** 0.5
+        #     angle = math.degrees(math.atan2(X[0] - X[1], Y[0] - Y[1]))
+        #     polygon = cv2.ellipse2Poly((int(mY), int(mX)), (int(length / 2), stickwidth), int(angle), 0, 360, 1)
+        #     cv2.fillConvexPoly(cur_canvas, polygon, self.colors[i])
+        #     canvas = cv2.addWeighted(canvas, 0.4, cur_canvas, 0.6, 0)
 
-            joint = np.zeros_like(cur_canvas[:, :, 0])
-            cv2.fillConvexPoly(joint, polygon, 255)
-            joint = cv2.addWeighted(joint, 0.4, joint, 0.6, 0)
-            joints.append(joint)
-        pose = F.to_tensor(Image.fromarray(cv2.cvtColor(canvas, cv2.COLOR_BGR2RGB)))
+        #     joint = np.zeros_like(cur_canvas[:, :, 0])
+        #     cv2.fillConvexPoly(joint, polygon, 255)
+        #     joint = cv2.addWeighted(joint, 0.4, joint, 0.6, 0)
+        #     joints.append(joint)
+        # pose = F.to_tensor(Image.fromarray(cv2.cvtColor(canvas, cv2.COLOR_BGR2RGB)))
 
-        tensors_dist = 0
-        e = 1
-        for i in range(len(joints)):
-            im_dist = cv2.distanceTransform(255-joints[i], cv2.DIST_L1, 3)
-            im_dist = np.clip((im_dist / 3), 0, 255).astype(np.uint8)
-            tensor_dist = F.to_tensor(Image.fromarray(im_dist))
-            tensors_dist = tensor_dist if e == 1 else torch.cat([tensors_dist, tensor_dist])
-            e += 1
+        # tensors_dist = 0
+        # e = 1
+        # for i in range(len(joints)):
+        #     im_dist = cv2.distanceTransform(255-joints[i], cv2.DIST_L1, 3)
+        #     im_dist = np.clip((im_dist / 3), 0, 255).astype(np.uint8)
+        #     tensor_dist = F.to_tensor(Image.fromarray(im_dist))
+        #     tensors_dist = tensor_dist if e == 1 else torch.cat([tensors_dist, tensor_dist])
+        #     e += 1
 
-        label_tensor = torch.cat((pose, tensors_dist), dim=0)
-        if int(keypoint[14, 0]) != -1 and int(keypoint[15, 0]) != -1:
-            y0, x0 = keypoint[14, 0:2]
-            y1, x1 = keypoint[15, 0:2]
-            face_center = torch.tensor([y0, x0, y1, x1]).float()
-        else:
-            face_center = torch.tensor([-1, -1, -1, -1]).float()               
-        return label_tensor, face_center
+        # label_tensor = torch.cat((pose, tensors_dist), dim=0)
+        # if int(keypoint[14, 0]) != -1 and int(keypoint[15, 0]) != -1:
+        #     y0, x0 = keypoint[14, 0:2]
+        #     y1, x1 = keypoint[15, 0:2]
+        #     face_center = torch.tensor([y0, x0, y1, x1]).float()
+        # else:
+        #     face_center = torch.tensor([-1, -1, -1, -1]).float()               
+        # return label_tensor, face_center
 
 
     def trans_keypoins(self, keypoints, param, img_size):

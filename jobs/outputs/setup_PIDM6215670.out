@@ -1,0 +1,251 @@
+WARNING: A conda environment already exists at '/home/scur2199/.conda/envs/PIDM'
+Remove existing environment (y/[n])? 
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... failed with initial frozen solve. Retrying with flexible solve.
+Solving environment: ...working... failed with repodata from current_repodata.json, will retry with next repodata source.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/scur2199/.conda/envs/PIDM
+
+  added / updated specs:
+    - cudatoolkit=11.1
+    - pytorch
+    - torchaudio
+    - torchvision
+
+
+The following NEW packages will be INSTALLED:
+
+  blas               pkgs/main/linux-64::blas-1.0-mkl
+  brotlipy           pkgs/main/linux-64::brotlipy-0.7.0-py37h27cfd23_1003
+  bzip2              pkgs/main/linux-64::bzip2-1.0.8-h5eee18b_6
+  cffi               pkgs/main/linux-64::cffi-1.15.1-py37h5eee18b_3
+  charset-normalizer pkgs/main/noarch::charset-normalizer-2.0.4-pyhd3eb1b0_0
+  cryptography       pkgs/main/linux-64::cryptography-39.0.1-py37h9ce1e76_0
+  cuda-cudart        nvidia/linux-64::cuda-cudart-11.7.99-0
+  cuda-cupti         nvidia/linux-64::cuda-cupti-11.7.101-0
+  cuda-libraries     nvidia/linux-64::cuda-libraries-11.7.1-0
+  cuda-nvrtc         nvidia/linux-64::cuda-nvrtc-11.7.99-0
+  cuda-nvtx          nvidia/linux-64::cuda-nvtx-11.7.91-0
+  cuda-runtime       nvidia/linux-64::cuda-runtime-11.7.1-0
+  cudatoolkit        nvidia/linux-64::cudatoolkit-11.1.74-h6bb024c_0
+  ffmpeg             pytorch/linux-64::ffmpeg-4.3-hf484d3e_0
+  freetype           pkgs/main/linux-64::freetype-2.12.1-h4a9f257_0
+  giflib             pkgs/main/linux-64::giflib-5.2.1-h5eee18b_3
+  gmp                pkgs/main/linux-64::gmp-6.2.1-h295c915_3
+  gnutls             pkgs/main/linux-64::gnutls-3.6.15-he1e5248_0
+  idna               pkgs/main/linux-64::idna-3.4-py37h06a4308_0
+  intel-openmp       pkgs/main/linux-64::intel-openmp-2021.4.0-h06a4308_3561
+  jpeg               pkgs/main/linux-64::jpeg-9e-h5eee18b_1
+  lame               pkgs/main/linux-64::lame-3.100-h7b6447c_0
+  lcms2              pkgs/main/linux-64::lcms2-2.12-h3be6417_0
+  lerc               pkgs/main/linux-64::lerc-3.0-h295c915_0
+  libcublas          nvidia/linux-64::libcublas-11.10.3.66-0
+  libcufft           nvidia/linux-64::libcufft-10.7.2.124-h4fbf590_0
+  libcufile          nvidia/linux-64::libcufile-1.9.1.3-0
+  libcurand          nvidia/linux-64::libcurand-10.3.5.147-0
+  libcusolver        nvidia/linux-64::libcusolver-11.4.0.1-0
+  libcusparse        nvidia/linux-64::libcusparse-11.7.4.91-0
+  libdeflate         pkgs/main/linux-64::libdeflate-1.17-h5eee18b_1
+  libiconv           pkgs/main/linux-64::libiconv-1.16-h5eee18b_3
+  libidn2            pkgs/main/linux-64::libidn2-2.3.4-h5eee18b_0
+  libnpp             nvidia/linux-64::libnpp-11.7.4.75-0
+  libnvjpeg          nvidia/linux-64::libnvjpeg-11.8.0.2-0
+  libpng             pkgs/main/linux-64::libpng-1.6.39-h5eee18b_0
+  libtasn1           pkgs/main/linux-64::libtasn1-4.19.0-h5eee18b_0
+  libtiff            pkgs/main/linux-64::libtiff-4.5.1-h6a678d5_0
+  libunistring       pkgs/main/linux-64::libunistring-0.9.10-h27cfd23_0
+  libwebp            pkgs/main/linux-64::libwebp-1.2.4-h11a3e52_1
+  libwebp-base       pkgs/main/linux-64::libwebp-base-1.2.4-h5eee18b_1
+  lz4-c              pkgs/main/linux-64::lz4-c-1.9.4-h6a678d5_1
+  mkl                pkgs/main/linux-64::mkl-2021.4.0-h06a4308_640
+  mkl-service        pkgs/main/linux-64::mkl-service-2.4.0-py37h7f8727e_0
+  mkl_fft            pkgs/main/linux-64::mkl_fft-1.3.1-py37hd3c417c_0
+  mkl_random         pkgs/main/linux-64::mkl_random-1.2.2-py37h51133e4_0
+  nettle             pkgs/main/linux-64::nettle-3.7.3-hbbd107a_1
+  numpy              pkgs/main/linux-64::numpy-1.21.5-py37h6c91a56_3
+  numpy-base         pkgs/main/linux-64::numpy-base-1.21.5-py37ha15fc14_3
+  openh264           pkgs/main/linux-64::openh264-2.1.1-h4ff587b_0
+  pillow             pkgs/main/linux-64::pillow-9.4.0-py37h6a678d5_0
+  pycparser          pkgs/main/noarch::pycparser-2.21-pyhd3eb1b0_0
+  pyopenssl          pkgs/main/linux-64::pyopenssl-23.0.0-py37h06a4308_0
+  pysocks            pkgs/main/linux-64::pysocks-1.7.1-py37_1
+  pytorch            pytorch/linux-64::pytorch-1.13.1-py3.7_cuda11.7_cudnn8.5.0_0
+  pytorch-cuda       pytorch/linux-64::pytorch-cuda-11.7-h778d358_5
+  pytorch-mutex      pytorch/noarch::pytorch-mutex-1.0-cuda
+  requests           pkgs/main/linux-64::requests-2.28.1-py37h06a4308_0
+  six                pkgs/main/noarch::six-1.16.0-pyhd3eb1b0_1
+  torchaudio         pytorch/linux-64::torchaudio-0.13.1-py37_cu117
+  torchvision        pytorch/linux-64::torchvision-0.14.1-py37_cu117
+  typing_extensions  pkgs/main/linux-64::typing_extensions-4.3.0-py37h06a4308_0
+  urllib3            pkgs/main/linux-64::urllib3-1.26.14-py37h06a4308_0
+  zstd               pkgs/main/linux-64::zstd-1.5.5-hc292b87_2
+
+
+Proceed ([y]/n)? 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... By downloading and using the CUDA Toolkit conda packages, you accept the terms and conditions of the CUDA End User License Agreement (EULA): https://docs.nvidia.com/cuda/eula/index.html
+
+done
+Collecting imageio==2.10.3
+  Using cached imageio-2.10.3-py3-none-any.whl (3.3 MB)
+Collecting lmdb==1.2.1
+  Using cached lmdb-1.2.1-cp37-cp37m-manylinux2010_x86_64.whl (299 kB)
+Collecting opencv-python==4.5.4.58
+  Using cached opencv_python-4.5.4.58-cp37-cp37m-manylinux2014_x86_64.whl (60.3 MB)
+Collecting Pillow==8.3.2
+  Using cached Pillow-8.3.2-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
+Collecting PyYAML==5.4.1
+  Using cached PyYAML-5.4.1-cp37-cp37m-manylinux1_x86_64.whl (636 kB)
+Collecting scikit-image==0.17.2
+  Using cached scikit_image-0.17.2-cp37-cp37m-manylinux1_x86_64.whl (12.5 MB)
+Collecting scipy==1.5.4
+  Using cached scipy-1.5.4-cp37-cp37m-manylinux1_x86_64.whl (25.9 MB)
+Collecting tensorboard==2.6.0
+  Using cached tensorboard-2.6.0-py3-none-any.whl (5.6 MB)
+Collecting tqdm==4.62.3
+  Using cached tqdm-4.62.3-py2.py3-none-any.whl (76 kB)
+Collecting pydantic==1.10.14
+  Using cached pydantic-1.10.14-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.1 MB)
+Collecting wandb
+  Using cached wandb-0.17.0-py3-none-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (6.7 MB)
+Collecting tensorfn
+  Using cached tensorfn-0.1.28-py3-none-any.whl (51 kB)
+Collecting protobuf==3.20.0
+  Using cached protobuf-3.20.0-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.whl (1.0 MB)
+Requirement already satisfied: numpy in /gpfs/home2/scur2199/.conda/envs/PIDM/lib/python3.7/site-packages (from imageio==2.10.3->-r /home/scur2199/DAVOS/modules/PIDM/requirements.txt (line 1)) (1.21.5)
+Collecting tifffile>=2019.7.26
+  Using cached tifffile-2021.11.2-py3-none-any.whl (178 kB)
+Collecting PyWavelets>=1.1.1
+  Using cached PyWavelets-1.3.0-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (6.4 MB)
+Collecting networkx>=2.0
+  Using cached networkx-2.6.3-py3-none-any.whl (1.9 MB)
+Collecting matplotlib!=3.0.0,>=2.0.0
+  Using cached matplotlib-3.5.3-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.whl (11.2 MB)
+Collecting absl-py>=0.4
+  Using cached absl_py-2.1.0-py3-none-any.whl (133 kB)
+Collecting tensorboard-plugin-wit>=1.6.0
+  Using cached tensorboard_plugin_wit-1.8.1-py3-none-any.whl (781 kB)
+Collecting grpcio>=1.24.3
+  Using cached grpcio-1.62.2-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (5.6 MB)
+Collecting google-auth-oauthlib<0.5,>=0.4.1
+  Using cached google_auth_oauthlib-0.4.6-py2.py3-none-any.whl (18 kB)
+Requirement already satisfied: setuptools>=41.0.0 in /gpfs/home2/scur2199/.conda/envs/PIDM/lib/python3.7/site-packages (from tensorboard==2.6.0->-r /home/scur2199/DAVOS/modules/PIDM/requirements.txt (line 8)) (65.6.3)
+Requirement already satisfied: wheel>=0.26 in /gpfs/home2/scur2199/.conda/envs/PIDM/lib/python3.7/site-packages (from tensorboard==2.6.0->-r /home/scur2199/DAVOS/modules/PIDM/requirements.txt (line 8)) (0.38.4)
+Collecting tensorboard-data-server<0.7.0,>=0.6.0
+  Using cached tensorboard_data_server-0.6.1-py3-none-manylinux2010_x86_64.whl (4.9 MB)
+Requirement already satisfied: requests<3,>=2.21.0 in /gpfs/home2/scur2199/.conda/envs/PIDM/lib/python3.7/site-packages (from tensorboard==2.6.0->-r /home/scur2199/DAVOS/modules/PIDM/requirements.txt (line 8)) (2.28.1)
+Collecting werkzeug>=0.11.15
+  Using cached Werkzeug-2.2.3-py3-none-any.whl (233 kB)
+Collecting markdown>=2.6.8
+  Using cached Markdown-3.4.4-py3-none-any.whl (94 kB)
+Collecting google-auth<2,>=1.6.3
+  Using cached google_auth-1.35.0-py2.py3-none-any.whl (152 kB)
+Requirement already satisfied: typing-extensions>=4.2.0 in /gpfs/home2/scur2199/.conda/envs/PIDM/lib/python3.7/site-packages (from pydantic==1.10.14->-r /home/scur2199/DAVOS/modules/PIDM/requirements.txt (line 10)) (4.3.0)
+Collecting sentry-sdk>=1.0.0
+  Using cached sentry_sdk-2.1.1-py2.py3-none-any.whl (277 kB)
+Collecting click!=8.0.0,>=7.1
+  Using cached click-8.1.7-py3-none-any.whl (97 kB)
+Collecting setproctitle
+  Using cached setproctitle-1.3.3-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (30 kB)
+Collecting platformdirs
+  Using cached platformdirs-4.0.0-py3-none-any.whl (17 kB)
+Collecting psutil>=5.0.0
+  Using cached psutil-5.9.8-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (288 kB)
+Collecting gitpython!=3.1.29,>=1.0.0
+  Using cached GitPython-3.1.43-py3-none-any.whl (207 kB)
+Collecting docker-pycreds>=0.4.0
+  Using cached docker_pycreds-0.4.0-py2.py3-none-any.whl (9.0 kB)
+Requirement already satisfied: torch>=1.1 in /gpfs/home2/scur2199/.conda/envs/PIDM/lib/python3.7/site-packages (from tensorfn->-r /home/scur2199/DAVOS/modules/PIDM/requirements.txt (line 12)) (1.13.1)
+Collecting rich
+  Using cached rich-13.7.1-py3-none-any.whl (240 kB)
+Collecting termcolor
+  Using cached termcolor-2.3.0-py3-none-any.whl (6.9 kB)
+Collecting tabulate
+  Using cached tabulate-0.9.0-py3-none-any.whl (35 kB)
+Collecting boto3
+  Using cached boto3-1.33.13-py3-none-any.whl (139 kB)
+Collecting pyhocon>=0.3.54
+  Using cached pyhocon-0.3.60-py3-none-any.whl
+Collecting importlib-metadata
+  Using cached importlib_metadata-6.7.0-py3-none-any.whl (22 kB)
+Requirement already satisfied: six>=1.4.0 in /gpfs/home2/scur2199/.conda/envs/PIDM/lib/python3.7/site-packages (from docker-pycreds>=0.4.0->wandb->-r /home/scur2199/DAVOS/modules/PIDM/requirements.txt (line 11)) (1.16.0)
+Collecting gitdb<5,>=4.0.1
+  Using cached gitdb-4.0.11-py3-none-any.whl (62 kB)
+Collecting cachetools<5.0,>=2.0.0
+  Using cached cachetools-4.2.4-py3-none-any.whl (10 kB)
+Collecting rsa<5,>=3.1.4
+  Using cached rsa-4.9-py3-none-any.whl (34 kB)
+Collecting pyasn1-modules>=0.2.1
+  Using cached pyasn1_modules-0.3.0-py2.py3-none-any.whl (181 kB)
+Collecting requests-oauthlib>=0.7.0
+  Using cached requests_oauthlib-2.0.0-py2.py3-none-any.whl (24 kB)
+Collecting fonttools>=4.22.0
+  Using cached fonttools-4.38.0-py3-none-any.whl (965 kB)
+Collecting packaging>=20.0
+  Using cached packaging-24.0-py3-none-any.whl (53 kB)
+Collecting pyparsing>=2.2.1
+  Using cached pyparsing-3.1.2-py3-none-any.whl (103 kB)
+Collecting cycler>=0.10
+  Using cached cycler-0.11.0-py3-none-any.whl (6.4 kB)
+Collecting python-dateutil>=2.7
+  Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Collecting kiwisolver>=1.0.1
+  Using cached kiwisolver-1.4.5-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.whl (1.1 MB)
+Requirement already satisfied: certifi>=2017.4.17 in /gpfs/home2/scur2199/.conda/envs/PIDM/lib/python3.7/site-packages (from requests<3,>=2.21.0->tensorboard==2.6.0->-r /home/scur2199/DAVOS/modules/PIDM/requirements.txt (line 8)) (2022.12.7)
+Requirement already satisfied: urllib3<1.27,>=1.21.1 in /gpfs/home2/scur2199/.conda/envs/PIDM/lib/python3.7/site-packages (from requests<3,>=2.21.0->tensorboard==2.6.0->-r /home/scur2199/DAVOS/modules/PIDM/requirements.txt (line 8)) (1.26.14)
+Requirement already satisfied: idna<4,>=2.5 in /gpfs/home2/scur2199/.conda/envs/PIDM/lib/python3.7/site-packages (from requests<3,>=2.21.0->tensorboard==2.6.0->-r /home/scur2199/DAVOS/modules/PIDM/requirements.txt (line 8)) (3.4)
+Requirement already satisfied: charset-normalizer<3,>=2 in /gpfs/home2/scur2199/.conda/envs/PIDM/lib/python3.7/site-packages (from requests<3,>=2.21.0->tensorboard==2.6.0->-r /home/scur2199/DAVOS/modules/PIDM/requirements.txt (line 8)) (2.0.4)
+Collecting MarkupSafe>=2.1.1
+  Using cached MarkupSafe-2.1.5-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (25 kB)
+Collecting botocore<1.34.0,>=1.33.13
+  Using cached botocore-1.33.13-py3-none-any.whl (11.8 MB)
+Collecting s3transfer<0.9.0,>=0.8.2
+  Using cached s3transfer-0.8.2-py3-none-any.whl (82 kB)
+Collecting jmespath<2.0.0,>=0.7.1
+  Using cached jmespath-1.0.1-py3-none-any.whl (20 kB)
+Collecting typing-extensions>=4.2.0
+  Using cached typing_extensions-4.7.1-py3-none-any.whl (33 kB)
+Collecting pygments<3.0.0,>=2.13.0
+  Using cached pygments-2.17.2-py3-none-any.whl (1.2 MB)
+Collecting markdown-it-py>=2.2.0
+  Using cached markdown_it_py-2.2.0-py3-none-any.whl (84 kB)
+Collecting smmap<6,>=3.0.1
+  Using cached smmap-5.0.1-py3-none-any.whl (24 kB)
+Collecting zipp>=0.5
+  Using cached zipp-3.15.0-py3-none-any.whl (6.8 kB)
+Collecting mdurl~=0.1
+  Using cached mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Collecting pyasn1<0.6.0,>=0.4.6
+  Using cached pyasn1-0.5.1-py2.py3-none-any.whl (84 kB)
+Collecting oauthlib>=3.0.0
+  Using cached oauthlib-3.2.2-py3-none-any.whl (151 kB)
+Installing collected packages: tensorboard-plugin-wit, lmdb, zipp, typing-extensions, tqdm, tifffile, termcolor, tensorboard-data-server, tabulate, smmap, setproctitle, sentry-sdk, scipy, PyYAML, PyWavelets, python-dateutil, pyparsing, pygments, pyasn1, psutil, protobuf, Pillow, packaging, opencv-python, oauthlib, networkx, mdurl, MarkupSafe, jmespath, grpcio, fonttools, docker-pycreds, cycler, cachetools, absl-py, werkzeug, rsa, requests-oauthlib, pyhocon, pydantic, pyasn1-modules, platformdirs, markdown-it-py, kiwisolver, importlib-metadata, imageio, gitdb, botocore, s3transfer, rich, matplotlib, markdown, google-auth, gitpython, click, wandb, scikit-image, google-auth-oauthlib, boto3, tensorfn, tensorboard
+  Attempting uninstall: typing-extensions
+    Found existing installation: typing_extensions 4.3.0
+    Uninstalling typing_extensions-4.3.0:
+      Successfully uninstalled typing_extensions-4.3.0
+  Attempting uninstall: Pillow
+    Found existing installation: Pillow 9.4.0
+    Uninstalling Pillow-9.4.0:
+      Successfully uninstalled Pillow-9.4.0
+Successfully installed MarkupSafe-2.1.5 Pillow-8.3.2 PyWavelets-1.3.0 PyYAML-5.4.1 absl-py-2.1.0 boto3-1.33.13 botocore-1.33.13 cachetools-4.2.4 click-8.1.7 cycler-0.11.0 docker-pycreds-0.4.0 fonttools-4.38.0 gitdb-4.0.11 gitpython-3.1.43 google-auth-1.35.0 google-auth-oauthlib-0.4.6 grpcio-1.62.2 imageio-2.10.3 importlib-metadata-6.7.0 jmespath-1.0.1 kiwisolver-1.4.5 lmdb-1.2.1 markdown-3.4.4 markdown-it-py-2.2.0 matplotlib-3.5.3 mdurl-0.1.2 networkx-2.6.3 oauthlib-3.2.2 opencv-python-4.5.4.58 packaging-24.0 platformdirs-4.0.0 protobuf-3.20.0 psutil-5.9.8 pyasn1-0.5.1 pyasn1-modules-0.3.0 pydantic-1.10.14 pygments-2.17.2 pyhocon-0.3.60 pyparsing-3.1.2 python-dateutil-2.9.0.post0 requests-oauthlib-2.0.0 rich-13.7.1 rsa-4.9 s3transfer-0.8.2 scikit-image-0.17.2 scipy-1.5.4 sentry-sdk-2.1.1 setproctitle-1.3.3 smmap-5.0.1 tabulate-0.9.0 tensorboard-2.6.0 tensorboard-data-server-0.6.1 tensorboard-plugin-wit-1.8.1 tensorfn-0.1.28 termcolor-2.3.0 tifffile-2021.11.2 tqdm-4.62.3 typing-extensions-4.7.1 wandb-0.17.0 werkzeug-2.2.3 zipp-3.15.0
+Finished!
+
+JOB STATISTICS
+==============
+Job ID: 6215670
+Cluster: snellius
+User/Group: scur2199/scur2199
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 9
+CPU Utilized: 00:05:30
+CPU Efficiency: 9.86% of 00:55:48 core-walltime
+Job Wall-clock time: 00:06:12
+Memory Utilized: 1.09 GB
+Memory Efficiency: 1.88% of 57.62 GB

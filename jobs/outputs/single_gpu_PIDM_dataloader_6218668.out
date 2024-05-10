@@ -1,0 +1,22 @@
+Starting...
+Experiment: single_gpu_pidm_dataloader
+Diffusion Config Path: ./config/diffusion.conf
+Current path: /gpfs/home2/scur2199/DAVOS/modules/PIDM
+val dataset [data.fashion_data::Dataset] of size 8 was created
+training dataset [data.fashion_data::Dataset] of size 8 was created
+#Epoch - 0
+Finished!
+
+JOB STATISTICS
+==============
+Job ID: 6218668
+Cluster: snellius
+User/Group: scur2199/scur2199
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:23
+CPU Efficiency: 4.56% of 00:08:24 core-walltime
+Job Wall-clock time: 00:00:28
+Memory Utilized: 1.22 MB
+Memory Efficiency: 0.00% of 57.62 GB

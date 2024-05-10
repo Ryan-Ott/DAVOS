@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#SBATCH --partition=gpu
+#SBATCH --gres=gpu:1
+#SBATCH --job-name=single_gpu_PIDM_dataloader
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=3
+#SBATCH --time=01:00:00
+#SBATCH --mem=59000M
+#SBATCH --output=jobs/outputs/single_gpu_PIDM_dataloader_%A.out
+#SBATCH --error=jobs/outputs/single_gpu_PIDM_dataloader_%A_error.out
+
+module purge
+module load 2022
+module load Anaconda3/2022.05
+
+# source /sw/arch/RHEL8/EB_production/2022/software/Anaconda3/2022.05/etc/profile.d/conda.sh
+
+cd modules/PIDM/
+
+echo "Starting..."
+
+source activate CV2_pose
+python train.py --exp_name 'single_gpu_pidm_dataloader' --dataset_path 'dataset/trial_dataset' --batch_size 8 --n_gpu 1
+
+echo "Finished!"
