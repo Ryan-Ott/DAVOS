@@ -1,0 +1,36 @@
+#!/bin/bash
+
+#SBATCH --partition=gpu
+#SBATCH --gres=gpu:2
+#SBATCH --job-name=multi_gpu_PIDM
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+#SBATCH --time=00:30:00
+#SBATCH --mem=59000M
+#SBATCH --output=jobs/outputs/multi_gpu_PIDM%A.out
+#SBATCH --error=jobs/outputs/multi_gpu_PIDM%A_error.out
+
+module purge
+module load 2022
+module load Anaconda3/2022.05
+
+source /sw/arch/RHEL8/EB_production/2022/software/Anaconda3/2022.05/etc/profile.d/conda.sh
+
+cd modules/PIDM/
+
+echo "Starting..."
+
+conda activate DAVOS
+python -m torch.distributed.launch --nproc_per_node 2 --master_port 48949 train.py \
+        --dataset_path "./dataset/trial_dataset" \
+        --batch_size 8 \
+        --exp_name "multi_gpu_PIDM" \
+        --sample_algorithm "ddpm" \
+        --epochs 4 \
+        --save_checkpoints_every_epochs 2 \
+        --save_wandb_images_every_epochs 2 \
+        --n_gpu 2
+
+echo "Finished!"
+
+

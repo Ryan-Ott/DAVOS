@@ -317,12 +317,14 @@ if __name__ == "__main__":
     if args.n_gpu > 1:
         init_distributed()  #* Necessary for multi-GPU
 
-    print(f'Experiment: {args.exp_name}')
-    print(f'Diffusion Config Path: {args.DiffConfigPath}')
-    print(f'Data Config Path: {args.DataConfigPath}')
-    print(f'Dataset Path: {args.dataset_path}')
-    print(f'Current path: {os.getcwd()}')
-    print(f'Sampling algorithm used: {args.sample_algorithm.upper()}')
+    if is_main_process():
+        print(f'Using {args.n_gpu} GPUs')
+        print(f'Experiment: {args.exp_name}')
+        print(f'Diffusion Config Path: {args.DiffConfigPath}')
+        print(f'Data Config Path: {args.DataConfigPath}')
+        print(f'Dataset Path: {args.dataset_path}')
+        print(f'Current path: {os.getcwd()}')
+        print(f'Sampling algorithm used: {args.sample_algorithm.upper()}')
 
     #? Configuration objects storing things like paths, schedules, flags, hyperparameters etc...
     DiffConf = DiffConfig(DiffusionConfig,  args.DiffConfigPath, args.opts, False)

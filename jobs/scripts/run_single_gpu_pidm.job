@@ -22,7 +22,7 @@ echo "Starting..."
 
 conda activate DAVOS
 python train.py \
-        --exp_name 'testing_final_env' \
+        --exp_name 'testing' \
         --dataset_path 'dataset/trial_dataset' \
         --n_gpu 1 \
         --sample_algorithm 'ddpm' \
