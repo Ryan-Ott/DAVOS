@@ -108,9 +108,9 @@ def train(conf, loader, val_loader, model, ema, diffusion, betas, optimizer, sch
 
             i = i + 1
 
-            img = torch.cat([batch['source_image'], batch['target_image']], 0)
-            target_img = torch.cat([batch['target_image'], batch['source_image']], 0)
-            target_pose = torch.cat([batch['target_skeleton'], batch['source_skeleton']], 0)
+            img = batch['image']
+            target_img = batch['target']
+            target_pose = batch['bcc']
 
             img = img.to(device)
             target_img = target_img.to(device)

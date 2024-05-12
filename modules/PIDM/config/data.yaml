@@ -6,7 +6,8 @@ data:
     path: /home/ankanbhunia/Downloads/pidm-demo/dataset/deepfashion
     num_workers: 8
     sub_path_img: 256-256-img
-    sub_path_pose: 256-256-pose
+    sub_path_target: 256-256-target
+    sub_path_bcc: 256-256-bcc
     resolution: 256
     scale_param: 0.05
     train:
