@@ -50,13 +50,20 @@ def prepare_data(root, dataset, out, n_worker, sizes, chunksize):
         with open(file_txt, 'r') as f:
             lines = f.readlines()
             for item in lines:
-                filenames.extend(item.strip().split(','))
+                files = item.strip().split(',')
+                for file in files:
+                    if file.endswith('.jpg'):
+                        filenames.extend([file])
 
         file_txt = '{}/test_pairs.txt'.format(root)
         with open(file_txt, 'r') as f:
             lines = f.readlines()
             for item in lines:
-                filenames.extend(item.strip().split(','))                
+                files = item.strip().split(',')
+                for file in files:
+                    if file.endswith('.jpg'):
+                        filenames.extend([file])
+
         filenames = list(set(filenames))
 
 
@@ -73,7 +80,7 @@ def prepare_data(root, dataset, out, n_worker, sizes, chunksize):
                     for idx, result_img, filename in tqdm(
                             pool.imap_unordered(resizer, enumerate(filenames), chunksize=chunksize),
                             total=total):
-                        filename = os.path.splitext(filename)[0] + '.png'
+                        filename = os.path.splitext(filename)[0] + '.jpg'
                         txn.put(format_for_lmdb(filename), result_img)
 
 if __name__ == '__main__':

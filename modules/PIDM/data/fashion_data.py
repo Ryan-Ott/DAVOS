@@ -75,8 +75,10 @@ class Dataset(Dataset):
 
 
         path_item = self.data[index]
-        target_tensor = torch.load(path_item['target'])
-        bcc_tensor = torch.load(path_item['bcc'])
+        target_tensor = torch.load(path_item['target']).squeeze(0) # squeeze target tensor bc it had one extra dimension
+        target_tensor = F.one_hot(target_tensor.to(torch.int64), num_classes=20) # 20 classes (VOC)
+        bcc_tensor = F.interpolate(torch.load(path_item['bcc']), size=(256, 256), mode='nearest')  # upsample bcc_mask
+        bcc_tensor = F.one_hot(bcc_tensor.to(torch.int64), num_classes=8) # 8 classes (see Ozzy's paper)
         image_tensor = self.get_image_tensor(path_item['image'])
         
         image_path = self.get_image_path(path_item['image'], path_item['target'])
