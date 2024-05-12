@@ -16,8 +16,10 @@ def get_random_params(size, scale_param):
     return {'crop_param': (x, y, w, h), 'scale_size':(new_h, new_w)}        
 
 
-def get_transform(normalize=True, toTensor=True):
+def get_transform(normalize=True, toTensor=True, resize=True, method=Image.BICUBIC):
     transform_list = []
+    if resize:
+        transform_list.append(transforms.Resize([256,256], interpolation=method))
     if toTensor:
         transform_list += [transforms.ToTensor()]
 
