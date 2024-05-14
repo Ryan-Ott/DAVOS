@@ -7,6 +7,7 @@ from io import BytesIO
 from PIL import Image
 
 import torch
+import torch.nn.functional
 import torchvision.transforms.functional as F
 from torch.utils.data import Dataset
 
@@ -16,10 +17,52 @@ def bin2dec(b, bits):
     mask = 2 ** torch.arange(bits - 1, -1, -1).to(b.device, b.dtype)
     return torch.sum(mask * b, -1)
 
+def one_hot_to_rgb_batch(batch_tensor, plot=False):
+
+    colors = torch.tensor([
+        [255, 255, 255], [255, 0, 0], [255, 85, 0], [255, 170, 0], [255, 255, 0], [170, 255, 0], [85, 255, 0], [0, 255, 0],
+        [0, 255, 85], [0, 255, 170], [0, 255, 255], [0, 170, 255], [0, 85, 255], [0, 0, 255], [85, 0, 255],
+        [170, 0, 255], [255, 0, 255], [255, 0, 170], [255, 0, 85], [255, 170, 85], [255, 255, 170]
+    ]) / 255.0  
+
+    colors = colors.to(batch_tensor.device)  
+
+    batch_tensor = batch_tensor.float()
+
+    # Expand the color tensor to match the batch size and spatial dimensions
+    # colors shape: [21, 3] -> [1, 21, 1, 1, 3]
+    colors = colors.unsqueeze(0).unsqueeze(2).unsqueeze(3)
+
+    # batch_tensor shape: [batch_size, 21, height, width]
+    # Reshape batch_tensor to [batch_size, 21, height, width, 1]
+    batch_tensor = batch_tensor.unsqueeze(-1)
+
+    rgb_images = batch_tensor * colors
+
+    rgb_images = rgb_images.sum(dim=1)  # Sum at dimension 1 (channel dimension)
+
+    if plot:
+        _, axs = plt.subplots(1, len(rgb_images), figsize=(15, 5))
+        for i, img in enumerate(rgb_images):
+            img = img.cpu().numpy()
+            img = np.clip(img, 0, 1)
+            if len(rgb_images) == 1:
+                axs.imshow(img)
+                axs.axis('off')
+            else:
+                axs[i].imshow(img)
+                axs[i].axis('off')
+        plt.show()
+
+    return rgb_images.permute(0, 3, 1, 2)
+
+
 class Dataset(Dataset):
     def __init__(self, opt, is_inference, labels_required = False):
         self.root = opt.path
         self.semantic_path = self.root
+        path = os.path.join(self.root, str(opt.sub_path_img))
+        self.img_path = path
         self.labels_required = labels_required
         self.file_path = 'train_pairs.txt' if not is_inference else 'test_pairs.txt'
         self.data = self.get_paths(self.root, self.file_path)
@@ -40,9 +83,9 @@ class Dataset(Dataset):
         for item in lines:
             dict_item={}
             item = item.strip().split(',')
-            dict_item['image'] = item[0]
-            dict_item['target'] = item[1]
-            dict_item['bcc'] = item[2]
+            dict_item['image'] = os.path.join(self.root,item[0])
+            dict_item['target'] = os.path.join(self.root,item[1])
+            dict_item['bcc'] = os.path.join(self.root,item[2])
             image_paths.append(dict_item)
         return image_paths
 
@@ -58,16 +101,6 @@ class Dataset(Dataset):
         )
         self.img_txn = self.img_env.begin(buffers=True)
 
-        self.pose_env = lmdb.open(
-            self.pose_path,
-            max_readers=32,
-            readonly=True,
-            lock=False,
-            readahead=False,
-            meminit=False,
-        )
-        self.pose_txn = self.pose_env.begin(buffers=True)
-
     def __getitem__(self, index):
 
         if not hasattr(self, 'txn'):
@@ -76,11 +109,12 @@ class Dataset(Dataset):
 
         path_item = self.data[index]
         target_tensor = torch.load(path_item['target']).squeeze(0) # squeeze target tensor bc it had one extra dimension
-        target_tensor = F.one_hot(target_tensor.to(torch.int64), num_classes=20) # 20 classes (VOC)
-        bcc_tensor = F.interpolate(torch.load(path_item['bcc']), size=(256, 256), mode='nearest')  # upsample bcc_mask
-        bcc_tensor = F.one_hot(bcc_tensor.to(torch.int64), num_classes=8) # 8 classes (see Ozzy's paper)
+        target_tensor = torch.nn.functional.one_hot(target_tensor.to(torch.int64), num_classes=21).squeeze().permute([2,0,1]).to(torch.float) # 20 classes (VOC)
+        target_tensor = one_hot_to_rgb_batch(target_tensor.unsqueeze(0)).squeeze(0)
+        bcc_tensor = torch.nn.functional.interpolate(torch.load(path_item['bcc']).unsqueeze(0), size=(256), mode='nearest')  # upsample bcc_mask
+        bcc_tensor = torch.nn.functional.one_hot(bcc_tensor.to(torch.int64), num_classes=8).squeeze().permute([2,0,1]).to(torch.float) # 8 classes (see Ozzy's paper)
+
         image_tensor = self.get_image_tensor(path_item['image'])
-        
         image_path = self.get_image_path(path_item['image'], path_item['target'])
 
         if not self.is_inference:
@@ -127,13 +161,13 @@ class Dataset(Dataset):
         return path_names
 
     def get_image_tensor(self, path):
-        print('image_path', path)
-        with self.img_env.begin(write=False) as txn:
-            key = f'{path}'.encode('utf-8')
-            img_bytes = txn.get(key) 
-        buffer = BytesIO(img_bytes)
-        img = Image.open(buffer)
-        trans = get_transform(normalize=True, toTensor=True)
+        # print('image_path', path)
+        # with self.img_env.begin(write=False) as txn:
+        #     key = f'{path}'.encode('utf-8')
+        #     img_bytes = txn.get(key) 
+        # buffer = BytesIO(img_bytes)
+        img = Image.open(path)
+        trans = get_transform(normalize=True, toTensor=True, resize=True)
         img = trans(img)
         return img
 

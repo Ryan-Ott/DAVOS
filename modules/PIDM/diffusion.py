@@ -502,7 +502,7 @@ class GaussianDiffusion:
         shape = x_cond[0].shape
         final = None
         x_cond[0] = [model.encode(x_cond[0])['cond'], model.encode(torch.zeros_like(x_cond[0]))['cond']]
-
+        
         samples_list = []
         for sample in self.p_sample_loop_progressive(
             model,
