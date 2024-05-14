@@ -73,7 +73,6 @@ class Dataset(Dataset):
     def __len__(self):
         return len(self.data)
 
-
     def get_paths(self, root, path):
         fd = open(os.path.join(root, path))
         lines = fd.readlines()
@@ -102,10 +101,6 @@ class Dataset(Dataset):
         self.img_txn = self.img_env.begin(buffers=True)
 
     def __getitem__(self, index):
-
-        if not hasattr(self, 'txn'):
-            self.open_lmdb()
-
 
         path_item = self.data[index]
         target_tensor = torch.load(path_item['target']).squeeze(0) # squeeze target tensor bc it had one extra dimension
