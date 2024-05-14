@@ -10,7 +10,7 @@ class SegmentationDataset(Dataset):
         self.image_dir = image_dir
         self.mask_dir = mask_dir
         self.true_mask_dir = true_mask_dir
-        self.filenames = [f for f in os.listdir(image_dir) if os.path.isfile(os.path.join(image_dir, f))]
+        self.filenames = [f for f in os.listdir(mask_dir) if os.path.isfile(os.path.join(image_dir, f))]
         self.transform = transform
         
     def load_image(self, idx: int):
