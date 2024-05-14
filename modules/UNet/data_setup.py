@@ -37,11 +37,11 @@ class SegmentationDataset(Dataset):
         if self.transform:
             # input_tensor = self.transform(input_tensor)
             # true_mask = self.transform(true_mask)
-            transform = transforms.Compose([
-                transforms.Resize((256, 256)),  
-                transforms.ToTensor()  
-            ])
-            image = transform(image)
+            # transform = transforms.Compose([
+            #     transforms.Resize((256, 256)),  
+            #     transforms.ToTensor()  
+            # ])
+            image = self.transform(image)
             
         input_tensor = torch.cat([image, mask], dim=0)  # Concatenating image and mask
 
