@@ -51,7 +51,7 @@ def train_step(
         # 5. Optimizer step
         optimizer.step()
 
-        # Calculate and accumulate accuracy metric across all batches
+        # TODO: TO CHANGE FOR OUR CASE
         y_pred_class = torch.argmax(torch.softmax(y_pred, dim=1), dim=1)
         train_acc += (y_pred_class == y).sum().item()/len(y_pred)
 
@@ -86,7 +86,7 @@ def test_step(
             loss = loss_fn(test_pred_logits, y)
             test_loss += loss.item()
 
-            # Calculate and accumulate accuracy
+            # TODO: TO CHANGE FOR OUR CASE
             test_pred_labels = test_pred_logits.argmax(dim=1)
             test_acc += ((test_pred_labels == y).sum().item()/len(test_pred_labels))
 
