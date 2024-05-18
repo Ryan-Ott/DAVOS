@@ -154,5 +154,3 @@ If you encounter any issues, ensure:
 For further assistance, refer to the documentation or contact the project maintainer.
 
 ---
-
-This README template should cover the essential steps required to run your project. Adjust the instructions based on your specific project requirements and environment setup.
