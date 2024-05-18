@@ -28,7 +28,7 @@ def train_step(
     model.train()
 
     # Setup train loss and train accuracy values
-    train_loss, train_acc = 0, 0
+    train_loss = 0
 
     # Loop through data loader data batches
     for batch, (X, y) in enumerate(dataloader):
@@ -51,14 +51,10 @@ def train_step(
         # 5. Optimizer step
         optimizer.step()
 
-        # TODO: TO CHANGE FOR OUR CASE
-        y_pred_class = torch.argmax(torch.softmax(y_pred, dim=1), dim=1)
-        train_acc += (y_pred_class == y).sum().item()/len(y_pred)
 
-    # Adjust metrics to get average loss and accuracy per batch
     train_loss = train_loss / len(dataloader)
-    train_acc = train_acc / len(dataloader)
-    return train_loss, train_acc
+
+    return train_loss
 
 def test_step(
     model: torch.nn.Module,
@@ -70,7 +66,7 @@ def test_step(
     model.eval()
 
     # Setup test loss and test accuracy values
-    test_loss, test_acc = 0, 0
+    test_loss = 0
 
     # Turn on inference context manager
     with torch.inference_mode():
@@ -86,14 +82,10 @@ def test_step(
             loss = loss_fn(test_pred_logits, y)
             test_loss += loss.item()
 
-            # TODO: TO CHANGE FOR OUR CASE
-            test_pred_labels = test_pred_logits.argmax(dim=1)
-            test_acc += ((test_pred_labels == y).sum().item()/len(test_pred_labels))
 
     # Adjust metrics to get average loss and accuracy per batch
     test_loss = test_loss / len(dataloader)
-    test_acc = test_acc / len(dataloader)
-    return test_loss, test_acc
+    return test_loss
 
 def train(
     model: torch.nn.Module,
@@ -106,9 +98,7 @@ def train(
     
     # Create empty results dictionary
     results = {"train_loss": [],
-        "train_acc": [],
-        "test_loss": [],
-        "test_acc": []
+        "test_loss": []
     }
 
         # Loop through training and testing steps for a number of epochs
@@ -127,16 +117,12 @@ def train(
         print(
             f"Epoch: {epoch+1} | "
             f"train_loss: {train_loss:.4f} | "
-            f"train_acc: {train_acc:.4f} | "
             f"test_loss: {test_loss:.4f} | "
-            f"test_acc: {test_acc:.4f}"
         )
 
         # Update results dictionary
         results["train_loss"].append(train_loss)
-        results["train_acc"].append(train_acc)
         results["test_loss"].append(test_loss)
-        results["test_acc"].append(test_acc)
 
     # Return the filled results at the end of the epochs
     return results
