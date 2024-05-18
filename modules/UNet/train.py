@@ -15,7 +15,7 @@ BATCH_SIZE = 16
 VAL_PERCENT = 0.2
 LEARNING_RATE = 0.001
 # NUM_WORKERS = os.cpu_count()
-NUM_WORKERS = 18
+NUM_WORKERS = 4
 
 # Setup directories
 img_dir_train = "../../data/VOC_DATA_FINAL_SPLIT/image/train"
@@ -40,13 +40,13 @@ dataset_train = data_setup.SegmentationDataset(image_dir=img_dir_train, mask_dir
 dataset_val = data_setup.SegmentationDataset(image_dir=img_dir_val, mask_dir=mask_dir_val, true_mask_dir=true_mask_dir_val)
 
 # 3. Create data loaders
-loader_args = dict(batch_size=BATCH_SIZE, num_workers=os.cpu_count(), pin_memory=True)
+loader_args = dict(batch_size=BATCH_SIZE, num_workers=NUM_WORKERS, pin_memory=True)
 train_loader = DataLoader(dataset_train, shuffle=True, batch_size=BATCH_SIZE, num_workers=NUM_WORKERS)
 val_loader = DataLoader(dataset_val, shuffle=False, batch_size=BATCH_SIZE, num_workers=NUM_WORKERS)
 
 
 # Create model
-model = model.UNet(in_channels=11, out_channels=1).to(device)
+model = model.UNet(in_channels=11, out_channels=21).to(device)
 
 # Set loss and optimizer
 loss_fn = torch.nn.CrossEntropyLoss()
@@ -57,7 +57,7 @@ engine.train(
     model=model,
     train_dataloader=train_loader,
     test_dataloader=val_loader,
-    loss_fn=loss_fn,
+    # loss_fn=loss_fn,
     optimizer=optimizer,
     epochs=NUM_EPOCHS,
     device=device)
@@ -66,4 +66,4 @@ engine.train(
 utils.save_model(
     model=model,
     target_dir="models",
-    model_name="unet_model.pth")
+    model_name="unet_model2.pth")

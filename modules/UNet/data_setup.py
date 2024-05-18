@@ -37,8 +37,8 @@ class SegmentationDataset(Dataset):
         mask = torch.nn.functional.one_hot(mask.to(torch.int64), num_classes=8).squeeze().permute([2,0,1]).to(torch.float) # 8 classes (see Ozzy's paper)
         # mask = mask.permute(1, 2, 0)
         
-        # true_mask = true_mask.squeeze(0).permute(1, 2, 0)
         true_mask = true_mask.squeeze(0)
+        true_mask = torch.nn.functional.one_hot(true_mask.to(torch.int64), num_classes=21).squeeze().permute([2,0,1]).to(torch.float) # 21 classes (VOC)
 
         # if self.transform:
             # input_tensor = self.transform(input_tensor)
