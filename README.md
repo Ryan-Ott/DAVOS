@@ -51,7 +51,7 @@ Run the `prepare_data.py` script to preprocess the data.
 python modules/PIDM/data/prepare_data.py \
 --input_dir ./dataset/PASCAL_VOC \
 --output_dir ./prepared_data \
---sizes ((256,256),)  <-- ToDo: Check sizes with Adi
+--sizes ((256,256),)
 ```
 
 This will create an lmdb dataset `modules/PIDM/dataset/PASCAL_VOC/256-256/`.
