@@ -10,12 +10,12 @@ from torch.utils.data import DataLoader, random_split
 from torchvision import transforms
 
 # Setup hyperparameters
-NUM_EPOCHS = 1
+NUM_EPOCHS = 15
 BATCH_SIZE = 16
 VAL_PERCENT = 0.2
 LEARNING_RATE = 0.001
 # NUM_WORKERS = os.cpu_count()
-NUM_WORKERS = 1
+NUM_WORKERS = 18
 
 # Setup directories
 img_dir_train = "../../data/VOC_DATA_FINAL_SPLIT/image/train"
@@ -36,8 +36,8 @@ data_transform = transforms.Compose([
 ])
 
 # Create train/test dataloader and get class names as a list
-dataset_train = data_setup.SegmentationDataset(image_dir=img_dir_train, mask_dir=mask_dir_train, true_mask_dir=true_mask_dir_train, transform=data_transform)
-dataset_val = data_setup.SegmentationDataset(image_dir=img_dir_val, mask_dir=mask_dir_val, true_mask_dir=true_mask_dir_val, transform=data_transform)
+dataset_train = data_setup.SegmentationDataset(image_dir=img_dir_train, mask_dir=mask_dir_train, true_mask_dir=true_mask_dir_train)
+dataset_val = data_setup.SegmentationDataset(image_dir=img_dir_val, mask_dir=mask_dir_val, true_mask_dir=true_mask_dir_val)
 
 # 3. Create data loaders
 loader_args = dict(batch_size=BATCH_SIZE, num_workers=os.cpu_count(), pin_memory=True)
