@@ -654,6 +654,41 @@ if __name__ == "__main__":
     print("FID: "+str(FID)+"\nLPIPS: "+str(LPIPS)+"\nSSIM: "+str(REC))
 
 
+def calculate_iou(pred, gt):
+    intersection = (pred & gt).float().sum()
+    union = (pred | gt).float().sum()
+    iou = intersection / union if union > 0 else 0
+    return iou
+
+def calculate_dice(pred, gt):
+    intersection = (pred & gt).float().sum()
+    total = pred.float().sum() + gt.float().sum()
+    dice = 2 * intersection / total if total > 0 else 0
+    return dice
+
+def calculate_scores(batch_preds, batch_gts):
+    # get dice and IoU score per class and average over all classes
+    
+    # assert that batch is of type int
+    batch_preds, batch_gts = batch_preds.int(), batch_gts.int()
+    _, num_classes, _, _ = batch_preds.shape
+    ious = torch.zeros(num_classes)
+    dices = torch.zeros(num_classes)
+
+    for i in range(num_classes):
+        # Compute across the entire batch for each class
+        ious[i] = calculate_iou(batch_preds[:, i, :, :], batch_gts[:, i, :, :])
+        dices[i] = calculate_dice(batch_preds[:, i, :, :], batch_gts[:, i, :, :])
+
+    scores = {
+        'IoU': {f'class_{i}': ious[i].item() for i in range(num_classes)},
+        'Dice': {f'class_{i}': dices[i].item() for i in range(num_classes)},
+        'IoU_total': ious.mean().item(),
+        'Dice_total': dices.mean().item(),
+    }
+    return scores
+
+
 
 
 
