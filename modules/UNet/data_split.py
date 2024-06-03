@@ -16,7 +16,7 @@ def move_files(file_list, base_path, new_base, set_type):
             for path in paths:
                 src = os.path.join(base_path, path)
                 dest = os.path.join(new_base, os.path.dirname(path), set_type)
-                shutil.move(src, dest)
+                shutil.copy(src, dest)
 
 def split_train_val(base_path, new_base, folders, val_ratio=0.2):
     for folder in folders:
@@ -35,15 +35,15 @@ def split_train_val(base_path, new_base, folders, val_ratio=0.2):
         for file in val_files:
             src = os.path.join(train_path, file)
             dest = os.path.join(val_path, file)
-            shutil.move(src, dest)
+            shutil.copy(src, dest)
 
 def main():
-    base_path = 'VOC_DATA_FINAL'  # Adjust if your base path is different
-    new_base = 'VOC_DATA_FINAL_SPLIT'
-    train_list = 'VOC_DATA_FINAL/train_pairs_bcc.txt'
-    test_list = 'VOC_DATA_FINAL/test_pairs_bcc.txt'
+    base_path = '../../VOC_DATA_FINAL'  # Adjust if your base path is different
+    new_base = '../../VOC_DATA_FINAL_SPLIT'
+    train_list = '../../VOC_DATA_FINAL/train_pairs_bcc.txt'
+    test_list = '../../VOC_DATA_FINAL/test_pairs_bcc.txt'
     folders = ['image', 'target', 'bcc']
-
+    
     create_directories(new_base, folders)
     
     move_files(train_list, base_path, new_base, 'train')
