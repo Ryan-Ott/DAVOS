@@ -1,6 +1,8 @@
 import argparse
+import glob
 import os
 import sys
+import warnings
 
 import cv2
 import numpy as np
@@ -43,6 +45,8 @@ def parse_args(args):
         type=str,
         choices=["llava_v1", "llava_llama_2"],
     )
+    parser.add_argument("--prompt", default=None, type=str)
+    parser.add_argument("--image_dir", default=None, type=str)
     return parser.parse_args(args)
 
 
@@ -64,6 +68,7 @@ def preprocess(
 
 
 def main(args):
+    warnings.filterwarnings("ignore")
     args = parse_args(args)
     os.makedirs(args.vis_save_path, exist_ok=True)
 
@@ -151,11 +156,12 @@ def main(args):
 
     model.eval()
 
-    while True:
+    # for image_path in glob.glob(os.path.join(args.image_dir, '*')):
+    for image_path in ["/home/scur2194/CV2/DAVOS/data/VOC_images/2007_000170.jpg"]:
         conv = conversation_lib.conv_templates[args.conv_type].copy()
         conv.messages = []
 
-        prompt = input("Please input your prompt: ")
+        prompt = args.prompt
         prompt = DEFAULT_IMAGE_TOKEN + "\n" + prompt
         if args.use_mm_start_end:
             replace_token = (
@@ -167,7 +173,6 @@ def main(args):
         conv.append_message(conv.roles[1], "")
         prompt = conv.get_prompt()
 
-        image_path = input("Please input the image path: ")
         if not os.path.exists(image_path):
             print("File not found in {}".format(image_path))
             continue
@@ -221,7 +226,7 @@ def main(args):
 
         text_output = tokenizer.decode(output_ids, skip_special_tokens=False)
         text_output = text_output.replace("\n", "").replace("  ", " ")
-        print("text_output: ", text_output)
+        # print("text_output: ", text_output)
 
         for i, pred_mask in enumerate(pred_masks):
             if pred_mask.shape[0] == 0:
@@ -234,7 +239,7 @@ def main(args):
                 args.vis_save_path, image_path.split("/")[-1].split(".")[0], i
             )
             cv2.imwrite(save_path, pred_mask * 100)
-            print("{} has been saved.".format(save_path))
+            # print("{} has been saved.".format(save_path))
 
             save_path = "{}/{}_masked_img_{}.jpg".format(
                 args.vis_save_path, image_path.split("/")[-1].split(".")[0], i
@@ -246,7 +251,7 @@ def main(args):
             )[pred_mask]
             save_img = cv2.cvtColor(save_img, cv2.COLOR_RGB2BGR)
             cv2.imwrite(save_path, save_img)
-            print("{} has been saved.".format(save_path))
+            # print("{} has been saved.".format(save_path))
 
 
 if __name__ == "__main__":

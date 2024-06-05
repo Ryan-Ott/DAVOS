@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#SBATCH --partition=gpu
+#SBATCH --gres=gpu:1
+#SBATCH --job-name=lisa_inference
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+#SBATCH --time=01:00:00
+#SBATCH --output=jobs/outputs/lisa_inference%A.out
+#SBATCH --error=jobs/outputs/lisa_inference%A_error.out
+
+#srun --partition=gpu --gres=gpu:1 --ntasks=1 --cpus-per-task=18 --time=00:10:00 --pty bash -i
+
+module purge
+module load 2022
+module load Anaconda3/2022.05
+
+source activate LISA
+
+python modules/LISA/chat.py --vis_save_path "/home/scur2194/CV2/DAVOS/data/LISA_outputs/chair" --prompt "Where are all chairs in this image? Please output segmentation mask." --image_dir "/home/scur2194/CV2/DAVOS/data/VOC_images/"
+
+python modules/LISA/chat.py --vis_save_path "/home/scur2194/CV2/DAVOS/data/LISA_outputs/person" --prompt "Where are all persons in this image? Please output segmentation mask." --image_dir "/home/scur2194/CV2/DAVOS/data/VOC_images/"

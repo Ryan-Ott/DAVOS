@@ -164,6 +164,7 @@ cython_debug/
 
 # MacOS stuff
 **/.DS_Store
+**/*.DS_Store
 
 # Unnecessary checkpoints
 **/checkpoints/**/*
@@ -171,6 +172,7 @@ cython_debug/
 # Job outputs
 **/jobs/outputs/
 
+# Data
 VOC_DATA_FINAL/
 VOC_DATA_FINAL_SPLIT/
-**/*.DS_Store
+data/
