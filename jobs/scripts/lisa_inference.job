@@ -14,7 +14,6 @@
 module purge
 module load 2022
 module load Anaconda3/2022.05
-
 source activate LISA
 
 python modules/LISA/chat.py --vis_save_path "/home/scur2194/CV2/DAVOS/data/LISA_outputs/chair" --prompt "Where are all chairs in this image? Please output segmentation mask." --image_dir "/home/scur2194/CV2/DAVOS/data/VOC_images/"

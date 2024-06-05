@@ -1,14 +1,15 @@
 import argparse
-import glob
 import os
 import sys
 import warnings
+from glob import glob
 
 import cv2
 import numpy as np
 import torch
 import torch.nn.functional as F
 from transformers import AutoTokenizer, BitsAndBytesConfig, CLIPImageProcessor
+from tqdm import tqdm
 
 from model.LISA import LISAForCausalLM
 from model.llava import conversation as conversation_lib
@@ -156,8 +157,7 @@ def main(args):
 
     model.eval()
 
-    # for image_path in glob.glob(os.path.join(args.image_dir, '*')):
-    for image_path in ["/home/scur2194/CV2/DAVOS/data/VOC_images/2007_000170.jpg"]:
+    for image_path in tqdm(glob(os.path.join(args.image_dir, '*'))):
         conv = conversation_lib.conv_templates[args.conv_type].copy()
         conv.messages = []
 

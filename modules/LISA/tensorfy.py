@@ -5,7 +5,7 @@ import torch
 from torchvision.transforms import Resize
 from tqdm import tqdm
 
-OUTPUT_DIRECTORY = "/path/to/output/directory/"
+OUTPUT_DIRECTORY = "/home/scur2194/CV2/DAVOS/data/LISA_outputs/combined_tensor"
 CHAIR_DIR = "/home/scur2194/CV2/DAVOS/data/LISA_outputs/chair/"
 PERSON_DIR = "/home/scur2194/CV2/DAVOS/data/LISA_outputs/person/"
 os.makedirs(OUTPUT_DIRECTORY, exist_ok=True)
@@ -13,10 +13,10 @@ resize_transform = Resize((256, 256))
 
 # Iterate over all images in the directories
 for image_name in tqdm(os.listdir(CHAIR_DIR)):
-    if image_name.endswith("_masked_img_0.jpg"):
-        image_id = image_name.split('_masked_img_0.jpg')[0]
-        chair_path = os.path.join(CHAIR_DIR, f"{image_id}_masked_img_0.jpg")
-        person_path = os.path.join(PERSON_DIR, f"{image_id}_masked_img_0.jpg")
+    if image_name.endswith("_mask_0.jpg"):
+        image_id = image_name.split('_mask_0.jpg')[0]
+        chair_path = os.path.join(CHAIR_DIR, f"{image_id}_mask_0.jpg")
+        person_path = os.path.join(PERSON_DIR, f"{image_id}_mask_0.jpg")
 
         # Initialize background mask
         background = np.ones((256, 256), dtype=np.uint8)
