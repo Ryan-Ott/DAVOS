@@ -17,6 +17,6 @@ module load Anaconda3/2022.05
 echo "Creating the DAVOS conda environment..."
 
 # conda env create -f davos_env.yml  # ToDo: Write here how long this took on Mark's account, took 1 min for me
-conda env create -f environment.yml
+conda env create -f environment.yaml
 
 echo "Finished!"
