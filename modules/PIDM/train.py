@@ -146,11 +146,10 @@ def train(conf, loader, val_loader, model, ema, diffusion, betas, optimizer, sch
         start_time = time.time()
         for batch in tqdm(loader):
             i = i + 1
-            #? Forming a combined batch that includes both the original and target images, 
-            #? Possibly for processing both directions in a single pass (source to target and target to source), enhancing the training efficiency.
-            img = torch.cat([batch['source_image'], batch['target_image']], 0)  #? Not sure yet why these get concatenated
-            target_img = torch.cat([batch['target_image'], batch['source_image']], 0)  #? Same here - also, why the zero at the end?
-            target_pose = torch.cat([batch['target_skeleton'], batch['source_skeleton']], 0)  #? Providing the model with both perspectives (source pose and target pose) in each batch
+
+            img = batch['image']
+            target_img = batch['target']
+            target_pose = batch['bcc']
 
             img = img.to(device)
             target_img = target_img.to(device)
@@ -216,11 +215,11 @@ def train(conf, loader, val_loader, model, ema, diffusion, betas, optimizer, sch
 
             if (epoch % args.save_wandb_images_every_epochs == 0) or (epoch == args.epochs-1):
                 print(f'Generating samples after epoch {epoch} (step {i})')
-                generate_samples(diffusion, ema, img, target_pose, args, betas, conf.distributed, val=False)  # ToDo: check whether just passing the img and pose like this is sufficient for training samples
+                generate_samples(diffusion, ema, img, target_pose, args, betas, conf.distributed, val=False)
                 
                 val_batch = next(val_loader)
-                val_img = val_batch['source_image'].cuda()
-                val_pose = val_batch['target_skeleton'].cuda()
+                val_img = val_batch['image'].cuda()
+                val_pose = val_batch['bcc'].cuda()
                 generate_samples(diffusion, ema, val_img, val_pose, args, betas, conf.distributed, val=True)
                 
         print(f'Epoch Time: {int(time.time()-start_time)} secs')

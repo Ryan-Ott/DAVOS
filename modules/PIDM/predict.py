@@ -17,107 +17,174 @@ from models.unet_autoenc import BeatGANsAutoencConfig
 from diffusion import create_gaussian_diffusion, make_beta_schedule, ddim_steps
 import torchvision.transforms as transforms
 import torchvision
+import data as deepfashion_data
+from config.dataconfig import Config as DataConfig
+import argparse
+
+
+def generate_ex(diffusion, ema, img, target_pose, args, betas, distributed, val):
+    sample_type = "validation" if val else "training"
+    print(f'Generating {sample_type} samples')
+    with torch.no_grad():
+        if args.sample_algorithm == 'ddpm':
+            samples = diffusion.p_sample_loop(ema, x_cond=[img, target_pose], progress=True, cond_scale=args.cond_scale)
+        elif args.sample_algorithm == 'ddim':
+            nsteps = 50
+            noise = torch.randn(img.shape).cuda()
+            seq = range(0, 1000, 1000 // nsteps)
+            xs, x0_preds = ddim_steps(noise, seq, ema, betas.cuda(), [img, target_pose])
+            samples = xs[-1].cuda()
+    return samples
+
+def init_distributed():
+    """
+    Initializes the distributed backend which will take care of sychronizing nodes/GPUs
+    """
+    dist_url = "env://" # default
+
+    # only works with torch.distributed.launch // torch.run
+    rank = int(os.environ["RANK"])
+    world_size = int(os.environ['WORLD_SIZE'])
+    local_rank = int(os.environ['LOCAL_RANK'])
+
+    dist.init_process_group(
+            backend="nccl",
+            init_method=dist_url,
+            world_size=world_size,
+            rank=rank)
+
+    # this will make all .cuda() calls work properly
+    torch.cuda.set_device(local_rank)
+    # synchronizes all the threads to reach this point before moving on
+    dist.barrier()
+    setup_for_distributed(rank == 0)
+
+def setup_for_distributed(is_master):
+    import builtins as __builtin__
+    builtin_print = __builtin__.print
+
+    def print(*args, **kwargs):
+        force = kwargs.pop('force', False)
+        if is_master or force:
+            builtin_print(*args, **kwargs)
+
+    __builtin__.print = print
+
+
+def is_main_process():
+    #? Always true for single GPU
+    try:
+        if dist.get_rank()==0:
+            return True
+        else:
+            return False
+    except:
+        return True
+
+
+def sample_data(loader):
+    loader_iter = iter(loader)
+    epoch = 0
+    
+    while True:
+        try:
+            yield epoch, next(loader_iter)
+        except StopIteration:
+            epoch += 1
+            loader_iter = iter(loader)
+            yield epoch, next(loader_iter)
+
 
 class Predictor():
-    def __init__(self):
+    def __init__(self, args, DataConf, DiffConf):
         """Load the model into memory to make running multiple predictions efficient"""
 
-        conf = DiffConfig(DiffusionConfig, './config/diffusion.conf', show=False)
+        conf = DiffConf
 
         self.model = get_model_conf().make_model()
-        ckpt = torch.load("checkpoints/last.pt")
+        ckpt = torch.load("checkpoints/lisa/model_epoch_149.pt")  # change the checkpoint path here
         self.model.load_state_dict(ckpt["ema"])
         self.model = self.model.cuda()
         self.model.eval()
 
         self.betas = conf.diffusion.beta_schedule.make()
-        self.diffusion = create_gaussian_diffusion(self.betas, predict_xstart = False)#.to(device)
-        
-        self.pose_list = glob.glob('data/deepfashion_256x256/target_pose/*.npy')
-        self.transforms = transforms.Compose([transforms.Resize((256,256), interpolation=Image.BICUBIC),
-                            transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5),
-                                                (0.5, 0.5, 0.5))])
-    def predict_pose(
-        self,
-        image,
-        num_poses=1,
-        sample_algorithm='ddim',
-        nsteps=100,
+        self.diffusion = create_gaussian_diffusion(self.betas, predict_xstart = False)
+        DiffConf.distributed = False
 
-        ):
-        """Run a single prediction on the model"""
+        local_rank = 0 if DiffConf.distributed == False else int(os.environ['LOCAL_RANK']) 
+        DataConf.data.train.batch_size = args.batch_size
+        self.DiffConf = DiffConf
+        self.val_dataset, _ = deepfashion_data.get_train_val_dataloader(DataConf.data, labels_required=True, distributed=DiffConf.distributed)
+    def save_tensor(self, args):
+        imgs, targets, samples = None, None, None
+        for batch in tqdm(self.val_dataset, total=len(self.val_dataset)):
+            device = args.device
+            img = batch['image']
+            target_img = batch['target']
+            target_pose = batch['bcc']
 
-        src = Image.open(image)
-        src = self.transforms(src).unsqueeze(0).cuda()
-        tgt_pose = torch.stack([transforms.ToTensor()(np.load(ps)).cuda() for ps in np.random.choice(self.pose_list, num_poses)], 0)
-
-        src = src.repeat(num_poses,1,1,1)
-
-        if sample_algorithm == 'ddpm':
-            samples = self.diffusion.p_sample_loop(self.model, x_cond = [src, tgt_pose], progress = True, cond_scale = 2)
-        elif sample_algorithm == 'ddim':
-            noise = torch.randn(src.shape).cuda()
-            seq = range(0, 1000, 1000//nsteps)
-            xs, x0_preds = ddim_steps(noise, seq, self.model, self.betas.cuda(), [src, tgt_pose])
-            samples = xs[-1].cuda()
-
-
-        samples_grid = torch.cat([src[0],torch.cat([samps for samps in samples], -1)], -1)
-        samples_grid = (torch.clamp(samples_grid, -1., 1.) + 1.0)/2.0
-        pose_grid = torch.cat([torch.zeros_like(src[0]),torch.cat([samps[:3] for samps in tgt_pose], -1)], -1)
-
-        output = torch.cat([1-pose_grid, samples_grid], -2)
-
-        numpy_imgs = output.unsqueeze(0).permute(0,2,3,1).detach().cpu().numpy()
-        fake_imgs = (255*numpy_imgs).astype(np.uint8)
-        Image.fromarray(fake_imgs[0]).save('output.png')
-
-
-    def predict_appearance(
-        self,
-        image,
-        ref_img,
-        ref_mask,
-        ref_pose,
-        sample_algorithm='ddim',
-        nsteps=100,
-
-        ):
-        """Run a single prediction on the model"""
-
-        src = Image.open(image)
-        src = self.transforms(src).unsqueeze(0).cuda()
-        
-        ref = Image.open(ref_img)
-        ref = self.transforms(ref).unsqueeze(0).cuda()
-
-        mask = transforms.ToTensor()(Image.open(ref_mask)).unsqueeze(0).cuda()
-        pose =  transforms.ToTensor()(np.load(ref_pose)).unsqueeze(0).cuda()
-
-
-        if sample_algorithm == 'ddpm':
-            samples = self.diffusion.p_sample_loop(self.model, x_cond = [src, pose, ref, mask], progress = True, cond_scale = 2)
-        elif sample_algorithm == 'ddim':
-            noise = torch.randn(src.shape).cuda()
-            seq = range(0, 1000, 1000//nsteps)
-            xs, x0_preds = ddim_steps(noise, seq, self.model, self.betas.cuda(), [src, pose, ref, mask], diffusion=self.diffusion)
-            samples = xs[-1].cuda()
-
-
-        samples = torch.clamp(samples, -1., 1.)
-
-        output = (torch.cat([src, ref, mask*2-1, samples], -1) + 1.0)/2.0
-
-        numpy_imgs = output.permute(0,2,3,1).detach().cpu().numpy()
-        fake_imgs = (255*numpy_imgs).astype(np.uint8)
-        Image.fromarray(fake_imgs[0]).save('output.png')
+            img = img.to(device)
+            target_img = target_img.to(device)
+            target_pose = target_pose.to(device)
+            with torch.no_grad():
+                if args.sample_algorithm == 'ddpm':
+                    sample = generate_ex(self.diffusion, self.model, img, target_pose, args, self.betas, self.DiffConf.distributed, val=True)
+            if imgs is None:
+                imgs = img
+                targets = target_pose
+                samples = sample
+            else:
+                imgs = torch.cat((imgs, img), dim=0)
+                targets = torch.cat((targets, target_pose), dim=0)
+                samples = torch.cat((samples, sample), dim=0)
+        dic = {'imgs':imgs, 'targets':targets, 'samples':samples}
+        torch.save(dic, args.save_path)
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='help')
+    parser.add_argument('--exp_name', type=str, default='pidm_deepfashion')
+    parser.add_argument('--DiffConfigPath', type=str, default='./config/diffusion.conf')
+    parser.add_argument('--DataConfigPath', type=str, default='./config/data.yaml')
+    parser.add_argument('--dataset_path', type=str, default='./dataset/deepfashion')
+    parser.add_argument('--save_path', type=str, default='outputs/output_data.pt')
+    parser.add_argument('--cond_scale', type=int, default=2)
+    parser.add_argument('--guidance_prob', type=int, default=0.1)
+    parser.add_argument('--sample_algorithm', type=str, default='ddim')  # ddpm, ddim
+    parser.add_argument('--batch_size', type=int, default=8)
+    parser.add_argument('--save_wandb_logs_every_iters', type=int, default=50)
+    parser.add_argument('--save_checkpoints_every_epochs', type=int, default=20)
+    parser.add_argument('--save_wandb_images_every_epochs', type=int, default=20)
+    parser.add_argument('--device', type=str, default='cuda')
+    parser.add_argument('--n_gpu', type=int, default=8)
+    parser.add_argument('--n_machine', type=int, default=1)
+    parser.add_argument('--local_rank', type=int, default=0)
+    parser.add_argument('--epochs', type=int, default=300)
+    parser.add_argument('--checkpoint', type=str, default=None)  # 'checkpoints/last.pt'
+    parser.add_argument("opts", default=None, nargs=argparse.REMAINDER)
 
+    args = parser.parse_args()
+    
+    if args.n_gpu > 1:
+        init_distributed()  #* Necessary for multi-GPU
 
-    obj = Predictor()
+    if is_main_process():
+        print(f'Using {args.n_gpu} GPUs')
+        print(f'Experiment: {args.exp_name}')
+        print(f'Diffusion Config Path: {args.DiffConfigPath}')
+        print(f'Data Config Path: {args.DataConfigPath}')
+        print(f'Dataset Path: {args.dataset_path}')
+        print(f'Current path: {os.getcwd()}')
+        print(f'Sampling algorithm used: {args.sample_algorithm.upper()}')
 
-    obj.predict_pose(image='test.jpg', num_poses=4, sample_algorithm = 'ddim',  nsteps = 50)
+    DiffConf = DiffConfig(DiffusionConfig,  args.DiffConfigPath, args.opts, False)
+    DataConf = DataConfig(args.DataConfigPath)  # Gets set up using a yaml file
+
+    DiffConf.training.ckpt_path = os.path.join(args.save_path, args.exp_name)
+    DataConf.data.path = args.dataset_path
+    
+    obj = Predictor(args, DataConf, DiffConf)
+
+    obj.save_tensor(args)
     
     # ref_img = "data/deepfashion_256x256/target_edits/reference_img_0.png"
     # ref_mask = "data/deepfashion_256x256/target_mask/lower/reference_mask_0.png"

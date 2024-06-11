@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#SBATCH --partition=gpu
+#SBATCH --gres=gpu:1
+#SBATCH --job-name=PIDM_training
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=3
+#SBATCH --time=05:00:00
+#SBATCH --mem=59000M
+#SBATCH --output=jobs/outputs/PIDM_training_%A.out
+#SBATCH --error=jobs/outputs/PIDM_training_%A_error.out
+
+# source /sw/arch/RHEL8/EB_production/2022/software/Anaconda3/2022.05/etc/profile.d/conda.sh
+
+module purge
+module load 2022
+module load Anaconda3/2022.05
+
+cd modules/PIDM/
+source activate CV2_pose
+
+python /home/scur2199/DAVOS/modules/PIDM/train.py --exp_name 'bcc' --dataset_path 'dataset/VOC_DATA_FINAL' --n_gpu 1 --sample_algorithm 'ddpm' --epochs 150 --save_checkpoints_every_epochs 10 --save_wandb_images_every_epochs 10
